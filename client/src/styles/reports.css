@@ -1,0 +1,465 @@
+/* ===================================================
+   REPORTS PAGE
+=================================================== */
+
+.reports-page{
+
+    margin-top:25px;
+
+}
+
+.reports-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.reports-header h1{
+
+    font-size:32px;
+
+    color:#0F172A;
+
+    margin-bottom:8px;
+
+}
+
+.reports-header p{
+
+    color:#64748B;
+
+    font-size:15px;
+
+}
+
+/* ===================================================
+   REPORT CARDS
+=================================================== */
+
+.reports-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.report-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+.report-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 35px rgba(37,99,235,.15);
+
+}
+
+.report-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:32px;
+
+    background:#EFF6FF;
+
+}
+
+.report-card h4{
+
+    color:#64748B;
+
+    margin-bottom:8px;
+
+    font-size:15px;
+
+}
+
+.report-card h2{
+
+    font-size:34px;
+
+    color:#0F172A;
+
+}
+
+/* ===================================================
+   CHART
+=================================================== */
+
+.chart-wrapper{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    margin-bottom:35px;
+
+}
+
+.chart-wrapper h3{
+
+    margin-bottom:25px;
+
+    color:#0F172A;
+
+}
+
+/* ===================================================
+   EXPORT
+=================================================== */
+
+.export-buttons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:18px;
+
+}
+
+.export-buttons button{
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px 26px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.csv-btn{
+
+    background:#16A34A;
+
+    color:white;
+
+}
+
+.csv-btn:hover{
+
+    background:#15803D;
+
+    transform:translateY(-3px);
+
+}
+
+.pdf-btn{
+
+    background:#DC2626;
+
+    color:white;
+
+}
+
+.pdf-btn:hover{
+
+    background:#B91C1C;
+
+    transform:translateY(-3px);
+
+}
+
+/* ===================================================
+   RESPONSIVE
+=================================================== */
+
+@media (max-width: 1200px) {
+
+  .reports-grid {
+
+    grid-template-columns: repeat(2,1fr);
+
+  }
+
+}
+
+@media (max-width: 900px) {
+
+  .reports-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+  }
+
+  .reports-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .export-buttons{
+
+    justify-content:flex-start;
+
+  }
+
+}
+
+@media (max-width:768px){
+
+  .reports-page{
+
+    padding:15px;
+
+  }
+
+  .reports-header h1{
+
+    font-size:28px;
+
+  }
+
+  .report-card{
+
+    padding:20px;
+
+  }
+
+  .report-icon{
+
+    width:60px;
+
+    height:60px;
+
+    font-size:28px;
+
+  }
+
+  .report-card h2{
+
+    font-size:28px;
+
+  }
+
+  .chart-wrapper{
+
+    padding:20px;
+
+  }
+
+  .export-buttons{
+
+    flex-direction:column;
+
+  }
+
+  .export-buttons button{
+
+    width:100%;
+
+  }
+
+}
+
+@media (max-width:480px){
+
+  .reports-header h1{
+
+    font-size:24px;
+
+  }
+
+  .reports-header p{
+
+    font-size:14px;
+
+  }
+
+  .report-card{
+
+    flex-direction:column;
+
+    text-align:center;
+
+  }
+
+  .report-icon{
+
+    margin-bottom:10px;
+
+  }
+
+}
+
+/* ===================================================
+   ANIMATIONS
+=================================================== */
+
+.reports-header{
+
+  animation:fadeDown .45s ease;
+
+}
+
+.report-card{
+
+  animation:fadeUp .5s ease;
+
+}
+
+.chart-wrapper{
+
+  animation:fadeUp .65s ease;
+
+}
+
+.export-buttons{
+
+  animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+  from{
+
+    opacity:0;
+
+    transform:translateY(25px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+  }
+
+}
+
+@keyframes fadeDown{
+
+  from{
+
+    opacity:0;
+
+    transform:translateY(-20px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+  }
+
+}
+
+/* ===================================================
+   SMALL ENHANCEMENTS
+=================================================== */
+
+.report-card:hover .report-icon{
+
+  transform:scale(1.08) rotate(-5deg);
+
+  transition:.3s;
+
+}
+
+.report-card:hover h2{
+
+  color:#2563EB;
+
+  transition:.3s;
+
+}
+
+.chart-wrapper:hover{
+
+  box-shadow:0 18px 40px rgba(37,99,235,.12);
+
+  transition:.3s;
+
+}
+
+.export-buttons button{
+
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.export-buttons button:active{
+
+  transform:scale(.98);
+
+}
+
+/* ===================================================
+   SCROLLBAR
+=================================================== */
+
+.chart-wrapper::-webkit-scrollbar{
+
+  width:8px;
+
+}
+
+.chart-wrapper::-webkit-scrollbar-thumb{
+
+  background:#CBD5E1;
+
+  border-radius:20px;
+
+}

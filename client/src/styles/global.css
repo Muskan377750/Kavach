@@ -1,0 +1,86 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'Inter',sans-serif;
+    background: #F8FAFC;
+    color: #0F172A;
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+button{
+    cursor: pointer;
+    font-family: inherit;
+}
+
+input,button,textarea,select{
+    font: inherit;
+}
+
+ul{
+    list-style: none;
+}
+
+img{
+    max-width: 100%;
+    display: block;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#E2E8F0;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2563EB;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#1D4ED8;
+}
+
+:root{
+     --primary:#2563EB;
+    --primary-dark:#1D4ED8;
+
+    --dark:#0F172A;
+
+    --background:#F8FAFC;
+
+    --white:#FFFFFF;
+
+    --green:#10B981;
+
+    --yellow:#F59E0B;
+
+    --red:#EF4444;
+
+    --gray:#64748B;
+
+    --border:#CBD5E1;
+
+    --shadow:
+    0 20px 45px rgba(15,23,42,.08);
+
+    --radius:18px;
+}
+

@@ -1,0 +1,2031 @@
+/* ==========================================================
+   SECUREVAULT ENTERPRISE DASHBOARD
+========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter",sans-serif;
+}
+
+body{
+    background:#F1F5F9;
+}
+
+/* ==========================================================
+LAYOUT
+========================================================== */
+
+.dashboard{
+
+display:flex;
+
+min-height:100vh;
+
+background:
+linear-gradient(
+135deg,
+#F8FAFC,
+#EFF6FF
+);
+
+}
+
+.dashboard-content{
+
+flex:1;
+
+margin-left:270px;
+
+padding:30px;
+
+min-height:100vh;
+
+}
+
+/* ==========================================================
+CARDS GRID
+========================================================== */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:24px;
+
+margin:28px 0 35px;
+
+}
+
+/* ==========================================================
+STAT CARD
+========================================================== */
+
+.stat-card{
+
+position:relative;
+
+overflow:hidden;
+
+background:white;
+
+border-radius:22px;
+
+padding:28px;
+
+box-shadow:
+0 10px 30px rgba(15,23,42,.08);
+
+transition:.35s;
+
+border:1px solid rgba(226,232,240,.8);
+
+}
+
+.stat-card::before{
+
+content:"";
+
+position:absolute;
+
+top:-70px;
+
+right:-70px;
+
+width:170px;
+
+height:170px;
+
+background:rgba(37,99,235,.05);
+
+border-radius:50%;
+
+transition:.35s;
+
+}
+
+.stat-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:
+0 18px 40px rgba(15,23,42,.12);
+
+}
+
+.stat-card:hover::before{
+
+transform:scale(1.2);
+
+}
+
+.stat-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:24px;
+
+}
+
+.stat-icon{
+
+width:62px;
+
+height:62px;
+
+border-radius:18px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:24px;
+
+}
+
+.trend-badge{
+
+padding:8px 14px;
+
+border-radius:30px;
+
+font-size:13px;
+
+font-weight:700;
+
+}
+
+.stat-card h4{
+
+font-size:15px;
+
+font-weight:600;
+
+color:#64748B;
+
+margin-bottom:12px;
+
+}
+
+.stat-card h1{
+
+font-size:44px;
+
+font-weight:800;
+
+margin-bottom:14px;
+
+}
+
+.stat-footer{
+
+font-size:14px;
+
+color:#94A3B8;
+
+}
+
+.stat-bottom-line{
+
+position:absolute;
+
+left:0;
+
+bottom:0;
+
+width:100%;
+
+height:5px;
+
+}
+
+/* ==========================================================
+DASHBOARD GRID
+========================================================== */
+
+.dashboard-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:25px;
+
+margin-bottom:28px;
+
+align-items:start;
+
+}
+
+/* ==========================================================
+COMMON CARD STYLE
+========================================================== */
+
+.security-health,
+.chart-card,
+.threat-feed,
+.top-risk-card,
+.investigation-card{
+
+background:white;
+
+border-radius:22px;
+
+padding:28px;
+
+box-shadow:
+0 10px 30px rgba(15,23,42,.08);
+
+border:1px solid rgba(226,232,240,.7);
+
+transition:.35s;
+
+}
+
+.security-health:hover,
+.chart-card:hover,
+.threat-feed:hover,
+.top-risk-card:hover,
+.investigation-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+0 18px 40px rgba(15,23,42,.12);
+
+}
+
+/* ==========================================================
+SECTION TITLES
+========================================================== */
+
+.security-health h2,
+.chart-card h2,
+.threat-feed h2,
+.top-risk-card h2,
+.investigation-card h2{
+
+font-size:23px;
+
+font-weight:800;
+
+color:#0F172A;
+
+margin-bottom:22px;
+
+}
+
+/* ==========================================================
+LIVE THREAT FEED
+========================================================== */
+
+.feed-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+.live-indicator{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:8px 15px;
+
+border-radius:30px;
+
+background:#DCFCE7;
+
+color:#16A34A;
+
+font-size:13px;
+
+font-weight:700;
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+opacity:1;
+
+}
+
+50%{
+
+opacity:.55;
+
+}
+
+100%{
+
+opacity:1;
+
+}
+
+}
+
+.threat-card{
+
+display:flex;
+
+gap:18px;
+
+padding:20px;
+
+border-radius:18px;
+
+margin-bottom:18px;
+
+background:#F8FAFC;
+
+border:1px solid #E2E8F0;
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.threat-card:last-child{
+
+margin-bottom:0;
+
+}
+
+.threat-card:hover{
+
+background:white;
+
+border-color:#2563EB;
+
+transform:translateY(-4px);
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.threat-icon-box{
+
+width:62px;
+
+height:62px;
+
+border-radius:18px;
+
+background:#FEE2E2;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+color:#DC2626;
+
+font-size:24px;
+
+flex-shrink:0;
+
+}
+
+.threat-content{
+
+flex:1;
+
+}
+
+.threat-title{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:12px;
+
+}
+
+.threat-title h3{
+
+font-size:18px;
+
+font-weight:700;
+
+color:#0F172A;
+
+}
+
+.employee-info{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+margin-bottom:10px;
+
+font-size:14px;
+
+color:#475569;
+
+}
+
+.employee-info svg{
+
+color:#2563EB;
+
+}
+
+.threat-content p{
+
+line-height:1.7;
+
+font-size:14px;
+
+color:#64748B;
+
+margin-bottom:18px;
+
+}
+
+.threat-footer{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+color:#94A3B8;
+
+font-size:13px;
+
+}
+
+.threat-footer span{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+}
+
+/* ==========================================================
+SECURITY HEALTH
+========================================================== */
+
+.health-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:28px;
+
+}
+
+.health-header p{
+
+color:#64748B;
+
+margin-top:5px;
+
+}
+
+.live-chip{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:8px 16px;
+
+background:#DCFCE7;
+
+border-radius:30px;
+
+color:#16A34A;
+
+font-size:13px;
+
+font-weight:700;
+
+}
+
+.pulse-dot{
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:#22C55E;
+
+animation:livePulse 1.4s infinite;
+
+}
+
+@keyframes livePulse{
+
+0%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(2);
+
+opacity:0;
+
+}
+
+}
+
+.health-circle{
+
+display:flex;
+
+justify-content:center;
+
+margin:30px 0;
+
+}
+
+.circle{
+
+width:230px;
+
+height:230px;
+
+border-radius:50%;
+
+background:
+
+conic-gradient(
+
+#22C55E 0deg,
+
+#22C55E 345deg,
+
+#E2E8F0 345deg,
+
+#E2E8F0 360deg
+
+);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.circle-inner{
+
+width:180px;
+
+height:180px;
+
+background:white;
+
+border-radius:50%;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+box-shadow:
+
+inset 0 0 20px rgba(0,0,0,.06);
+
+}
+
+.health-shield{
+
+font-size:38px;
+
+color:#22C55E;
+
+margin-bottom:12px;
+
+}
+
+.circle-inner h1{
+
+font-size:42px;
+
+font-weight:800;
+
+color:#22C55E;
+
+}
+
+.circle-inner span{
+
+margin-top:6px;
+
+color:#64748B;
+
+font-weight:600;
+
+}
+
+.health-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:16px;
+
+margin-bottom:28px;
+
+}
+
+.health-box{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:18px;
+
+border-radius:16px;
+
+background:#F8FAFC;
+
+transition:.3s;
+
+}
+
+.health-box:hover{
+
+background:#EFF6FF;
+
+transform:translateY(-3px);
+
+}
+
+.health-box svg{
+
+font-size:24px;
+
+color:#2563EB;
+
+}
+
+.health-box h4{
+
+font-size:15px;
+
+margin-bottom:5px;
+
+color:#0F172A;
+
+}
+
+.health-box span{
+
+font-size:13px;
+
+color:#64748B;
+
+}
+
+.security-score{
+
+margin-top:15px;
+
+}
+
+.score-row{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:8px;
+
+font-size:14px;
+
+font-weight:600;
+
+}
+
+.progress{
+
+height:10px;
+
+border-radius:30px;
+
+overflow:hidden;
+
+background:#E5E7EB;
+
+margin-bottom:18px;
+
+}
+
+.progress-fill{
+
+height:100%;
+
+border-radius:30px;
+
+animation:growBar 2s ease;
+
+}
+
+.firewall{
+
+width:100%;
+
+background:#22C55E;
+
+}
+
+.auth{
+
+width:95%;
+
+background:#2563EB;
+
+}
+
+.endpoint{
+
+width:92%;
+
+background:#F59E0B;
+
+}
+
+@keyframes growBar{
+
+from{
+
+width:0;
+
+}
+
+}
+
+/* ==========================================================
+LIVE THREAT FEED
+========================================================== */
+
+.feed-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+.live-indicator{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:8px 15px;
+
+border-radius:30px;
+
+background:#DCFCE7;
+
+color:#16A34A;
+
+font-size:13px;
+
+font-weight:700;
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+opacity:1;
+
+}
+
+50%{
+
+opacity:.55;
+
+}
+
+100%{
+
+opacity:1;
+
+}
+
+}
+
+.threat-card{
+
+display:flex;
+
+gap:18px;
+
+padding:20px;
+
+border-radius:18px;
+
+margin-bottom:18px;
+
+background:#F8FAFC;
+
+border:1px solid #E2E8F0;
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.threat-card:last-child{
+
+margin-bottom:0;
+
+}
+
+.threat-card:hover{
+
+background:white;
+
+border-color:#2563EB;
+
+transform:translateY(-4px);
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.threat-icon-box{
+
+width:62px;
+
+height:62px;
+
+border-radius:18px;
+
+background:#FEE2E2;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+color:#DC2626;
+
+font-size:24px;
+
+flex-shrink:0;
+
+}
+
+.threat-content{
+
+flex:1;
+
+}
+
+.threat-title{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:12px;
+
+}
+
+.threat-title h3{
+
+font-size:18px;
+
+font-weight:700;
+
+color:#0F172A;
+
+}
+
+.employee-info{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+margin-bottom:10px;
+
+font-size:14px;
+
+color:#475569;
+
+}
+
+.employee-info svg{
+
+color:#2563EB;
+
+}
+
+.threat-content p{
+
+line-height:1.7;
+
+font-size:14px;
+
+color:#64748B;
+
+margin-bottom:18px;
+
+}
+
+.threat-footer{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+color:#94A3B8;
+
+font-size:13px;
+
+}
+
+.threat-footer span{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+}
+
+/* ==========================================================
+SECURITY HEALTH
+========================================================== */
+
+.health-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:28px;
+
+}
+
+.health-header p{
+
+color:#64748B;
+
+margin-top:5px;
+
+}
+
+.live-chip{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:8px 16px;
+
+background:#DCFCE7;
+
+border-radius:30px;
+
+color:#16A34A;
+
+font-size:13px;
+
+font-weight:700;
+
+}
+
+.pulse-dot{
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:#22C55E;
+
+animation:livePulse 1.4s infinite;
+
+}
+
+@keyframes livePulse{
+
+0%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(2);
+
+opacity:0;
+
+}
+
+}
+
+.health-circle{
+
+display:flex;
+
+justify-content:center;
+
+margin:30px 0;
+
+}
+
+.circle{
+
+width:230px;
+
+height:230px;
+
+border-radius:50%;
+
+background:
+
+conic-gradient(
+
+#22C55E 0deg,
+
+#22C55E 345deg,
+
+#E2E8F0 345deg,
+
+#E2E8F0 360deg
+
+);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.circle-inner{
+
+width:180px;
+
+height:180px;
+
+background:white;
+
+border-radius:50%;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+box-shadow:
+
+inset 0 0 20px rgba(0,0,0,.06);
+
+}
+
+.health-shield{
+
+font-size:38px;
+
+color:#22C55E;
+
+margin-bottom:12px;
+
+}
+
+.circle-inner h1{
+
+font-size:42px;
+
+font-weight:800;
+
+color:#22C55E;
+
+}
+
+.circle-inner span{
+
+margin-top:6px;
+
+color:#64748B;
+
+font-weight:600;
+
+}
+
+.health-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:16px;
+
+margin-bottom:28px;
+
+}
+
+.health-box{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:18px;
+
+border-radius:16px;
+
+background:#F8FAFC;
+
+transition:.3s;
+
+}
+
+.health-box:hover{
+
+background:#EFF6FF;
+
+transform:translateY(-3px);
+
+}
+
+.health-box svg{
+
+font-size:24px;
+
+color:#2563EB;
+
+}
+
+.health-box h4{
+
+font-size:15px;
+
+margin-bottom:5px;
+
+color:#0F172A;
+
+}
+
+.health-box span{
+
+font-size:13px;
+
+color:#64748B;
+
+}
+
+.security-score{
+
+margin-top:15px;
+
+}
+
+.score-row{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:8px;
+
+font-size:14px;
+
+font-weight:600;
+
+}
+
+.progress{
+
+height:10px;
+
+border-radius:30px;
+
+overflow:hidden;
+
+background:#E5E7EB;
+
+margin-bottom:18px;
+
+}
+
+.progress-fill{
+
+height:100%;
+
+border-radius:30px;
+
+animation:growBar 2s ease;
+
+}
+
+.firewall{
+
+width:100%;
+
+background:#22C55E;
+
+}
+
+.auth{
+
+width:95%;
+
+background:#2563EB;
+
+}
+
+.endpoint{
+
+width:92%;
+
+background:#F59E0B;
+
+}
+
+@keyframes growBar{
+
+from{
+
+width:0;
+
+}
+
+}
+
+/* ==========================================================
+RESPONSIVE DESIGN
+========================================================== */
+
+@media (max-width:1400px){
+
+.cards{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.dashboard-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.health-grid{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+}
+
+@media (max-width:992px){
+
+.dashboard-content{
+
+margin-left:0;
+
+padding:20px;
+
+}
+
+.cards{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.health-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.risk-employee,
+.investigation-item{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:15px;
+
+}
+
+.risk-right,
+.investigation-right{
+
+width:100%;
+
+align-items:flex-start;
+
+}
+
+.risk-progress-bar{
+
+width:100%;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.dashboard-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.threat-card{
+
+flex-direction:column;
+
+}
+
+.threat-title{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:8px;
+
+}
+
+.threat-footer{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+.health-circle{
+
+transform:scale(.9);
+
+}
+
+.circle{
+
+width:200px;
+
+height:200px;
+
+}
+
+.circle-inner{
+
+width:160px;
+
+height:160px;
+
+}
+
+.stat-card h1{
+
+font-size:34px;
+
+}
+
+}
+
+/* ==========================================================
+SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#E2E8F0;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#2563EB;
+
+border-radius:30px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#1D4ED8;
+
+}
+
+/* ==========================================================
+FADE ANIMATION
+========================================================== */
+
+.dashboard>*{
+
+animation:fadeIn .6s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(18px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================================================
+PREMIUM CARD GLOW
+========================================================== */
+
+.stat-card:hover,
+.security-health:hover,
+.chart-card:hover,
+.threat-feed:hover,
+.top-risk-card:hover,
+.investigation-card:hover{
+
+box-shadow:
+
+0 18px 45px rgba(37,99,235,.12);
+
+}
+
+/* ==========================================================
+BUTTONS
+========================================================== */
+
+button{
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+}
+
+/* ==========================================================
+LIVE BADGES
+========================================================== */
+
+.status-badge,
+.risk-badge,
+.live-chip,
+.live-indicator{
+
+box-shadow:
+
+0 5px 15px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================================
+SMOOTH PROGRESS
+========================================================== */
+
+.progress-fill,
+.risk-progress-fill{
+
+transition:width .8s ease;
+
+}
+
+/* ==========================================================
+CARD HEADINGS
+========================================================== */
+
+.top-risk-card h2,
+.investigation-card h2,
+.security-health h2,
+.chart-card h2,
+.threat-feed h2{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+/* ==========================================================
+SUBTLE GLASS EFFECT
+========================================================== */
+
+.stat-card,
+.security-health,
+.chart-card,
+.threat-feed,
+.top-risk-card,
+.investigation-card{
+
+backdrop-filter:blur(14px);
+
+}
+
+/* ==========================================================
+END OF DASHBOARD
+========================================================== */
+
+/* =========================================================
+   EMPLOYEE RISK MONITOR
+========================================================= */
+
+.employee-monitor{
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(12px);
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 15px 40px rgba(15,23,42,.08);
+    border:1px solid rgba(255,255,255,.6);
+    transition:.35s;
+}
+
+.employee-monitor:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 45px rgba(37,99,235,.15);
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:28px;
+}
+
+.section-header h2{
+    font-size:24px;
+    color:#0f172a;
+    font-weight:700;
+}
+
+.live-badge{
+    background:linear-gradient(90deg,#22c55e,#16a34a);
+    color:white;
+    padding:7px 18px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+    box-shadow:0 6px 20px rgba(34,197,94,.35);
+    animation:pulseLive 1.8s infinite;
+}
+
+@keyframes pulseLive{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.08);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+.employee-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#ffffff,#f8fbff);
+    border:1px solid #edf2f7;
+    margin-bottom:18px;
+    transition:.35s;
+}
+
+.employee-card:last-child{
+    margin-bottom:0;
+}
+
+.employee-card:hover{
+    transform:translateX(8px);
+    box-shadow:0 12px 30px rgba(37,99,235,.12);
+}
+
+.employee-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.employee-avatar{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    font-weight:700;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
+}
+
+.employee-left h3{
+    font-size:20px;
+    margin-bottom:6px;
+    color:#0f172a;
+}
+
+.employee-left p{
+    color:#64748b;
+    font-size:14px;
+}
+
+.employee-right{
+    width:260px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.risk-percent{
+    font-size:22px;
+    font-weight:700;
+    color:#0f172a;
+    margin-bottom:12px;
+}
+
+.risk-progress{
+    width:100%;
+    height:12px;
+    background:#e2e8f0;
+    border-radius:999px;
+    overflow:hidden;
+    margin-bottom:14px;
+}
+
+.risk-progress-fill{
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,#22c55e,#facc15,#f97316,#dc2626);
+    transition:width .6s ease;
+}
+
+.risk-chip{
+    padding:7px 18px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+    color:white;
+}
+
+.risk-chip.low{
+    background:#22c55e;
+}
+
+.risk-chip.medium{
+    background:#3b82f6;
+}
+
+.risk-chip.high{
+    background:#f97316;
+}
+
+.risk-chip.critical{
+    background:#dc2626;
+}
+
+.empty-state{
+    padding:45px;
+    text-align:center;
+    color:#94a3b8;
+    font-size:16px;
+}
+
+@media(max-width:900px){
+
+.employee-card{
+flex-direction:column;
+align-items:flex-start;
+gap:18px;
+}
+
+.employee-right{
+width:100%;
+align-items:flex-start;
+}
+
+}
+
+/* ===========================================
+INCIDENT TIMELINE
+=========================================== */
+
+.incident-timeline{
+
+background:white;
+
+border-radius:22px;
+
+padding:28px;
+
+box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.incident-timeline:hover{
+
+transform:translateY(-5px);
+
+}
+
+.timeline-item{
+
+display:flex;
+
+gap:20px;
+
+position:relative;
+
+padding-bottom:28px;
+
+}
+
+.timeline-item:last-child{
+
+padding-bottom:0;
+
+}
+
+.timeline-item::before{
+
+content:"";
+
+position:absolute;
+
+left:12px;
+
+top:22px;
+
+width:2px;
+
+height:100%;
+
+background:#E2E8F0;
+
+}
+
+.timeline-item:last-child::before{
+
+display:none;
+
+}
+
+.timeline-dot{
+
+width:24px;
+
+height:24px;
+
+border-radius:50%;
+
+flex-shrink:0;
+
+margin-top:4px;
+
+z-index:2;
+
+}
+
+.timeline-dot.open{
+
+background:#EF4444;
+
+}
+
+.timeline-dot.investigating{
+
+background:#F59E0B;
+
+}
+
+.timeline-dot.resolved{
+
+background:#22C55E;
+
+}
+
+.timeline-content{
+
+flex:1;
+
+background:#F8FAFC;
+
+padding:18px;
+
+border-radius:18px;
+
+transition:.3s;
+
+}
+
+.timeline-content:hover{
+
+background:white;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.timeline-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:12px;
+
+}
+
+.timeline-top h3{
+
+font-size:18px;
+
+color:#0F172A;
+
+}
+
+.timeline-time{
+
+background:#DBEAFE;
+
+color:#2563EB;
+
+padding:6px 12px;
+
+border-radius:30px;
+
+font-size:12px;
+
+font-weight:700;
+
+}
+
+.timeline-content p{
+
+margin-top:8px;
+
+color:#475569;
+
+}
+
+.status-pill{
+
+padding:5px 14px;
+
+border-radius:20px;
+
+font-size:12px;
+
+color:white;
+
+font-weight:700;
+
+}
+
+.status-pill.open{
+
+background:#EF4444;
+
+}
+
+.status-pill.investigating{
+
+background:#F59E0B;
+
+}
+
+.status-pill.resolved{
+
+background:#22C55E;
+
+}
