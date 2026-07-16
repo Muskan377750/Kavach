@@ -1,299 +1,619 @@
-/* ==========================================
+/* ==========================================================
+   KAVACH SOC
    THREAT FEED
-========================================== */
+========================================================== */
 
-.threat-feed-card {
-  background: linear-gradient(180deg, #182235 0%, #121b2d 100%);
-  border: 1px solid rgba(59, 130, 246, 0.18);
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s ease;
+.threat-feed-card{
+
+    background:var(--gradient-card);
+
+    border:1px solid var(--border-primary);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow-card);
+
+    transition:var(--transition-normal);
+
+    position:relative;
+
 }
 
-.threat-feed-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(59, 130, 246, 0.45);
+.threat-feed-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120px;
+
+    right:-120px;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+
+        rgba(59,130,246,.14),
+
+        transparent 70%
+
+    );
+
+    pointer-events:none;
+
 }
 
-.threat-feed-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 28px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
+.threat-feed-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:var(--primary-blue);
+
+    box-shadow:
+
+        var(--shadow-large),
+
+        var(--shadow-blue);
+
 }
 
-.threat-feed-header h2 {
-  margin: 0;
-  color: #fff;
-  font-size: 1.25rem;
-  font-weight: 700;
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.threat-feed-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:24px 28px;
+
+    border-bottom:1px solid var(--border-primary);
+
 }
 
-.threat-feed-header p {
-  margin-top: 6px;
-  color: #9ca3af;
-  font-size: .9rem;
+.threat-feed-header h2{
+
+    margin:0;
+
+    color:var(--text-primary);
+
+    font-size:1.25rem;
+
+    font-weight:700;
+
 }
 
-.live-indicator {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(34,197,94,.12);
-  color: #4ade80;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: .85rem;
-  animation: pulse 2s infinite;
+.threat-feed-header p{
+
+    margin-top:6px;
+
+    color:var(--text-secondary);
+
+    font-size:.9rem;
+
 }
 
-.live-indicator svg {
-  font-size: 14px;
+/* ==========================================================
+   LIVE
+========================================================== */
+
+.live-indicator{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:var(--success-light);
+
+    border:1px solid rgba(34,197,94,.2);
+
+    color:var(--success);
+
+    font-weight:700;
+
+    font-size:.82rem;
+
+    animation:pulse 2s infinite;
+
 }
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(74,222,128,.5);
-  }
+.live-indicator svg{
 
-  70% {
-    box-shadow: 0 0 0 10px rgba(74,222,128,0);
-  }
+    font-size:14px;
 
-  100% {
-    box-shadow: 0 0 0 0 rgba(74,222,128,0);
-  }
 }
 
-.threat-feed {
-  display: flex;
-  flex-direction: column;
+@keyframes pulse{
+
+0%{
+
+box-shadow:0 0 0 0 rgba(34,197,94,.45);
+
 }
 
-.threat-item {
-  display: flex;
-  gap: 18px;
-  padding: 22px 26px;
-  border-bottom: 1px solid rgba(255,255,255,.05);
-  transition: all .25s ease;
+70%{
+
+box-shadow:0 0 0 10px transparent;
+
 }
 
-.threat-item:last-child {
-  border-bottom: none;
+100%{
+
+box-shadow:0 0 0 0 transparent;
+
 }
 
-.threat-item:hover {
-  background: rgba(59,130,246,.05);
 }
 
-.severity-line {
-  width: 5px;
-  border-radius: 999px;
-  flex-shrink: 0;
+/* ==========================================================
+   LIST
+========================================================== */
+
+.threat-feed{
+
+    display:flex;
+
+    flex-direction:column;
+
 }
 
-.severity-line.critical {
-  background: #ef4444;
+.threat-item{
+
+    display:flex;
+
+    gap:18px;
+
+    padding:22px 26px;
+
+    border-bottom:1px solid var(--border-secondary);
+
+    transition:var(--transition-fast);
+
 }
 
-.severity-line.high {
-  background: #f97316;
+.threat-item:last-child{
+
+    border-bottom:none;
+
 }
 
-.severity-line.medium {
-  background: #f59e0b;
+.threat-item:hover{
+
+    background:rgba(59,130,246,.05);
+
 }
 
-.severity-line.low {
-  background: #22c55e;
+/* ==========================================================
+   SEVERITY LINE
+========================================================== */
+
+.severity-line{
+
+    width:5px;
+
+    border-radius:999px;
+
+    flex-shrink:0;
+
 }
 
-.threat-content {
-  flex: 1;
+.severity-line.critical{
+
+    background:var(--danger);
+
 }
 
-.threat-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+.severity-line.high{
+
+    background:#f97316;
+
 }
 
-.threat-top h4 {
-  margin: 0;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
+.severity-line.medium{
+
+    background:var(--warning);
+
 }
 
-.threat-top p {
-  margin-top: 6px;
-  color: #9ca3af;
-  line-height: 1.5;
-  font-size: .9rem;
+.severity-line.low{
+
+    background:var(--success);
+
 }
-/* ==========================================
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.threat-content{
+
+    flex:1;
+
+}
+
+.threat-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.threat-top h4{
+
+    margin:0;
+
+    color:var(--text-primary);
+
+    font-size:1rem;
+
+    font-weight:700;
+
+}
+
+.threat-top p{
+
+    margin-top:6px;
+
+    color:var(--text-secondary);
+
+    line-height:1.6;
+
+    font-size:.9rem;
+
+}
+/* ==========================================================
    SEVERITY BADGES
-========================================== */
+========================================================== */
 
-.severity-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 90px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 700;
+.severity-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:90px;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    font-size:.8rem;
+
+    font-weight:700;
+
+    border:1px solid transparent;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
 }
 
-.severity-badge.critical {
-  background: rgba(239, 68, 68, 0.12);
-  color: #ef4444;
+.severity-badge.critical{
+
+    background:rgba(239,68,68,.12);
+
+    color:var(--danger);
+
+    border-color:rgba(239,68,68,.20);
+
 }
 
-.severity-badge.high {
-  background: rgba(249, 115, 22, 0.12);
-  color: #f97316;
+.severity-badge.high{
+
+    background:rgba(249,115,22,.12);
+
+    color:#F97316;
+
+    border-color:rgba(249,115,22,.20);
+
 }
 
-.severity-badge.medium {
-  background: rgba(245, 158, 11, 0.12);
-  color: #f59e0b;
+.severity-badge.medium{
+
+    background:var(--warning-light);
+
+    color:var(--warning);
+
+    border-color:rgba(245,158,11,.20);
+
 }
 
-.severity-badge.low {
-  background: rgba(34, 197, 94, 0.12);
-  color: #22c55e;
+.severity-badge.low{
+
+    background:var(--success-light);
+
+    color:var(--success);
+
+    border-color:rgba(34,197,94,.20);
+
 }
 
-/* ==========================================
+/* ==========================================================
    FOOTER
-========================================== */
+========================================================== */
 
-.threat-footer {
-  margin-top: 18px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
+.threat-footer{
+
+    margin-top:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:22px;
+
+    flex-wrap:wrap;
+
 }
 
-.threat-footer span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #9ca3af;
-  font-size: 0.85rem;
+.threat-footer span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:var(--text-secondary);
+
+    font-size:.85rem;
+
 }
 
-.threat-footer svg {
-  color: #60a5fa;
+.threat-footer svg{
+
+    color:var(--primary-blue);
+
 }
 
-/* ==========================================
-   BUTTON
-========================================== */
+/* ==========================================================
+   VIEW BUTTON
+========================================================== */
 
-.threat-view-btn {
-  margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 16px;
-  background: #2563eb;
-  color: #fff;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.25s ease;
+.threat-view-btn{
+
+    margin-left:auto;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    background:var(--gradient-primary);
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:var(--transition-fast);
+
+    box-shadow:0 10px 20px rgba(37,99,235,.25);
+
 }
 
-.threat-view-btn:hover {
-  transform: translateY(-2px);
-  background: #3b82f6;
+.threat-view-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+        var(--shadow-blue);
+
 }
 
-.threat-view-btn svg {
-  transition: transform 0.25s ease;
+.threat-view-btn svg{
+
+    transition:transform .25s ease;
+
 }
 
-.threat-view-btn:hover svg {
-  transform: translateX(4px);
+.threat-view-btn:hover svg{
+
+    transform:translateX(4px);
+
 }
 
-/* ==========================================
+/* ==========================================================
    EMPTY STATE
-========================================== */
+========================================================== */
 
-.threat-empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 420px;
-  text-align: center;
-  padding: 32px;
-  background: linear-gradient(180deg, #182235 0%, #121b2d 100%);
-  border-radius: 22px;
-  border: 1px solid rgba(59, 130, 246, 0.15);
+.threat-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    height:420px;
+
+    padding:32px;
+
+    background:var(--gradient-card);
+
+    border:1px solid var(--border-primary);
+
+    border-radius:22px;
+
 }
 
-.threat-empty-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: rgba(59, 130, 246, 0.12);
-  color: #60a5fa;
-  font-size: 30px;
-  margin-bottom: 18px;
+.threat-empty-icon{
+
+    width:72px;
+
+    height:72px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:rgba(59,130,246,.12);
+
+    color:var(--primary-blue);
+
+    font-size:30px;
+
+    margin-bottom:20px;
+
 }
 
-.threat-empty h3 {
-  margin: 0;
-  color: #fff;
-  font-size: 1.3rem;
+.threat-empty h3{
+
+    margin:0;
+
+    color:var(--text-primary);
+
+    font-size:1.35rem;
+
 }
 
-.threat-empty p {
-  margin-top: 12px;
-  color: #9ca3af;
-  max-width: 420px;
-  line-height: 1.6;
+.threat-empty p{
+
+    margin-top:12px;
+
+    max-width:420px;
+
+    color:var(--text-secondary);
+
+    line-height:1.7;
+
 }
 
-/* ==========================================
+/* ==========================================================
    RESPONSIVE
-========================================== */
+========================================================== */
 
-@media (max-width: 768px) {
-  .threat-feed-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
+@media(max-width:768px){
 
-  .threat-top {
-    flex-direction: column;
-    gap: 14px;
-  }
+.threat-feed-header{
 
-  .threat-footer {
-    gap: 14px;
-  }
+flex-direction:column;
 
-  .threat-view-btn {
-    margin-left: 0;
-    width: 100%;
-    justify-content: center;
-  }
+align-items:flex-start;
 
-  .threat-item {
-    padding: 18px;
-  }
+gap:16px;
+
+}
+
+.threat-top{
+
+flex-direction:column;
+
+gap:14px;
+
+}
+
+.threat-footer{
+
+gap:14px;
+
+}
+
+.threat-view-btn{
+
+margin-left:0;
+
+width:100%;
+
+justify-content:center;
+
+}
+
+.threat-item{
+
+padding:18px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.threat-feed-header{
+
+padding:20px;
+
+}
+
+.threat-item{
+
+padding:16px;
+
+gap:14px;
+
+}
+
+.threat-empty{
+
+height:320px;
+
+padding:24px;
+
+}
+
+.threat-empty-icon{
+
+width:60px;
+
+height:60px;
+
+font-size:26px;
+
+}
+
+.threat-empty h3{
+
+font-size:1.15rem;
+
+}
+
+}
+.threat-item{
+    cursor:pointer;
+}
+
+.threat-item:hover{
+    transform:translateY(-3px);
+    border-color:rgba(59,130,246,.35);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+.threat-item:active{
+    transform:scale(.99);
 }

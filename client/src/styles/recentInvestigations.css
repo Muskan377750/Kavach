@@ -1,29 +1,35 @@
-/* ===========================================================
+/* ==========================================================
    KAVACH SOC
    RECENT INVESTIGATIONS
-=========================================================== */
+========================================================== */
 
 .investigation-panel{
 
     position:relative;
 
-    background:
-        linear-gradient(
-            145deg,
-            #111827,
-            #0F172A
-        );
+    overflow:hidden;
 
-    border:1px solid rgba(59,130,246,.15);
+    background:var(--gradient-card);
+
+    border:1px solid var(--border-primary);
 
     border-radius:22px;
 
     padding:24px;
 
-    overflow:hidden;
+    box-shadow:var(--shadow-card);
+
+    transition:var(--transition-normal);
+
+}
+
+.investigation-panel:hover{
+
+    border-color:var(--primary-blue);
 
     box-shadow:
-        0 20px 45px rgba(0,0,0,.35);
+        var(--shadow-large),
+        var(--shadow-blue);
 
 }
 
@@ -49,11 +55,19 @@
             transparent 70%
         );
 
+    pointer-events:none;
+
 }
 
-/* =========================================================== */
+/* ==========================================================
+   HEADER
+========================================================== */
 
 .investigation-header{
+
+    position:relative;
+
+    z-index:2;
 
     display:flex;
 
@@ -63,17 +77,13 @@
 
     margin-bottom:24px;
 
-    position:relative;
-
-    z-index:2;
-
 }
 
 .investigation-header h2{
 
     margin:0;
 
-    color:#F8FAFC;
+    color:var(--text-primary);
 
     font-size:22px;
 
@@ -85,11 +95,11 @@
 
     margin-top:8px;
 
-    color:#94A3B8;
+    max-width:500px;
+
+    color:var(--text-secondary);
 
     font-size:13px;
-
-    max-width:500px;
 
 }
 
@@ -99,27 +109,25 @@
 
     height:52px;
 
-    padding:14px;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
     border-radius:16px;
 
-    background:
+    background:var(--gradient-primary);
 
-        linear-gradient(
-            135deg,
-            #3B82F6,
-            #2563EB
-        );
+    color:#fff;
 
-    color:white;
-
-    box-shadow:
-
-        0 0 20px rgba(59,130,246,.30);
+    box-shadow:var(--shadow-blue);
 
 }
 
-/* =========================================================== */
+/* ==========================================================
+   LIST
+========================================================== */
 
 .investigation-list{
 
@@ -131,11 +139,15 @@
 
 }
 
-/* =========================================================== */
+/* ==========================================================
+   CARD
+========================================================== */
 
 .investigation-card{
 
     position:relative;
+
+    overflow:hidden;
 
     display:flex;
 
@@ -145,19 +157,11 @@
 
     border-radius:18px;
 
-    background:
+    background:var(--bg-card);
 
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.04),
-            rgba(255,255,255,.02)
-        );
+    border:1px solid var(--border-primary);
 
-    border:1px solid rgba(255,255,255,.06);
-
-    transition:.3s;
-
-    overflow:hidden;
+    transition:var(--transition-normal);
 
 }
 
@@ -175,7 +179,7 @@
 
     height:100%;
 
-    background:#3B82F6;
+    background:var(--primary-blue);
 
 }
 
@@ -183,15 +187,44 @@
 
     transform:translateY(-5px);
 
-    border-color:#2563EB;
+    border-color:var(--primary-blue);
 
-    box-shadow:
-
-        0 18px 35px rgba(0,0,0,.30);
+    box-shadow:var(--shadow-card);
 
 }
 
-/* =========================================================== */
+.investigation-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(59,130,246,.08),
+            transparent 60%
+        );
+
+    transition:.35s;
+
+}
+
+.investigation-card:hover::after{
+
+    opacity:1;
+
+}
+
+/* ==========================================================
+   ICON
+========================================================== */
 
 .case-icon{
 
@@ -209,20 +242,16 @@
 
     border-radius:16px;
 
-    background:rgba(59,130,246,.14);
+    background:rgba(59,130,246,.12);
 
-    color:#60A5FA;
+    color:var(--primary-blue);
 
     font-size:22px;
 
 }
-
-/* =========================================================== */
-
-/* CONTINUE IN PART 2 */
-/* ===========================================================
+/* ==========================================================
    CASE CONTENT
-=========================================================== */
+========================================================== */
 
 .case-content{
 
@@ -235,8 +264,6 @@
     z-index:2;
 
 }
-
-/* =========================================================== */
 
 .case-top{
 
@@ -256,7 +283,7 @@
 
     margin:0;
 
-    color:#F8FAFC;
+    color:var(--text-primary);
 
     font-size:16px;
 
@@ -266,17 +293,17 @@
 
 }
 
-/* ===========================================================
-   STATUS BADGES
-=========================================================== */
+/* ==========================================================
+   STATUS
+========================================================== */
 
 .case-status{
 
     display:inline-flex;
 
-    align-items:center;
-
     justify-content:center;
+
+    align-items:center;
 
     min-width:92px;
 
@@ -298,9 +325,9 @@
 
 .case-status.pending{
 
-    background:rgba(245,158,11,.14);
+    background:var(--warning-light);
 
-    color:#F59E0B;
+    color:var(--warning);
 
     border-color:rgba(245,158,11,.25);
 
@@ -310,7 +337,7 @@
 
     background:rgba(59,130,246,.14);
 
-    color:#60A5FA;
+    color:var(--primary-blue);
 
     border-color:rgba(59,130,246,.25);
 
@@ -318,9 +345,9 @@
 
 .case-status.completed{
 
-    background:rgba(34,197,94,.14);
+    background:var(--success-light);
 
-    color:#22C55E;
+    color:var(--success);
 
     border-color:rgba(34,197,94,.25);
 
@@ -328,17 +355,17 @@
 
 .case-status.closed{
 
-    background:rgba(107,114,128,.18);
+    background:rgba(148,163,184,.14);
 
-    color:#CBD5E1;
+    color:var(--text-secondary);
 
-    border-color:rgba(107,114,128,.30);
+    border-color:var(--border-primary);
 
 }
 
-/* ===========================================================
-   CASE INFO
-=========================================================== */
+/* ==========================================================
+   INFO
+========================================================== */
 
 .case-info{
 
@@ -360,7 +387,7 @@
 
     gap:8px;
 
-    color:#94A3B8;
+    color:var(--text-secondary);
 
     font-size:13px;
 
@@ -368,13 +395,13 @@
 
 .case-info svg{
 
-    color:#60A5FA;
+    color:var(--primary-blue);
 
 }
 
-/* ===========================================================
+/* ==========================================================
    FOOTER
-=========================================================== */
+========================================================== */
 
 .case-footer{
 
@@ -386,9 +413,9 @@
 
     padding-top:14px;
 
-    border-top:1px solid rgba(255,255,255,.06);
+    border-top:1px solid var(--border-primary);
 
-    color:#94A3B8;
+    color:var(--text-muted);
 
     font-size:12px;
 
@@ -396,11 +423,11 @@
 
 .case-footer svg{
 
-    color:#60A5FA;
+    color:var(--primary-blue);
 
     font-size:18px;
 
-    transition:.3s;
+    transition:var(--transition-normal);
 
 }
 
@@ -410,47 +437,9 @@
 
 }
 
-/* ===========================================================
-   HOVER GLOW
-=========================================================== */
-
-.investigation-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-        radial-gradient(
-
-        circle at top right,
-
-        rgba(59,130,246,.08),
-
-        transparent 60%
-
-        );
-
-    opacity:0;
-
-    transition:.35s;
-
-    pointer-events:none;
-
-}
-
-.investigation-card:hover::after{
-
-    opacity:1;
-
-}
-
-/* ===========================================================
+/* ==========================================================
    EMPTY STATE
-=========================================================== */
+========================================================== */
 
 .investigation-empty{
 
@@ -478,15 +467,9 @@
 
     border-radius:18px;
 
-    background:
+    background:rgba(59,130,246,.12);
 
-        linear-gradient(
-            135deg,
-            rgba(59,130,246,.18),
-            rgba(59,130,246,.08)
-        );
-
-    color:#60A5FA;
+    color:var(--primary-blue);
 
     margin-bottom:18px;
 
@@ -496,7 +479,7 @@
 
     margin:0;
 
-    color:#F8FAFC;
+    color:var(--text-primary);
 
     font-size:22px;
 
@@ -508,7 +491,7 @@
 
     margin-top:10px;
 
-    color:#94A3B8;
+    color:var(--text-secondary);
 
     max-width:320px;
 
@@ -516,9 +499,9 @@
 
 }
 
-/* ===========================================================
+/* ==========================================================
    RESPONSIVE
-=========================================================== */
+========================================================== */
 
 @media(max-width:768px){
 
@@ -526,9 +509,9 @@
 
 flex-direction:column;
 
-gap:18px;
-
 align-items:flex-start;
+
+gap:18px;
 
 }
 

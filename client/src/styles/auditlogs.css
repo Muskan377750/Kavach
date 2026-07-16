@@ -1,429 +1,415 @@
+/* ==========================================================
+   KAVACH AUDIT LOGS
+========================================================== */
+
 .audit-container{
-
-display:flex;
-flex-direction:column;
-gap:25px;
-
+  display:flex;
+  flex-direction:column;
+  gap:28px;
 }
 
-
-
-/* SUMMARY */
+/* ==========================================================
+   SUMMARY CARDS
+========================================================== */
 
 .audit-summary{
-
-display:grid;
-
-grid-template-columns:repeat(4,1fr);
-
-gap:20px;
-
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
 }
-
-
 
 .audit-card{
 
-background:white;
+  display:flex;
+  align-items:center;
+  gap:18px;
 
-border-radius:20px;
+  padding:24px;
 
-padding:22px;
+  background:var(--gradient-card);
 
-display:flex;
+  border:1px solid var(--border-primary);
 
-align-items:center;
+  border-radius:22px;
 
-gap:18px;
+  box-shadow:var(--shadow-card);
 
-border:1px solid #E2E8F0;
-
-box-shadow:
-0 12px 25px rgba(15,23,42,.06);
+  transition:var(--transition-normal);
 
 }
 
+.audit-card:hover{
 
+  transform:translateY(-5px);
+
+  border-color:var(--primary-blue);
+
+  box-shadow:
+      var(--shadow-large),
+      var(--shadow-blue);
+
+}
 
 .audit-card h2{
 
-margin:0;
+  margin:0;
 
-font-size:32px;
+  font-size:34px;
 
-color:#0F172A;
+  color:var(--text-primary);
 
 }
-
-
 
 .audit-card p{
 
-margin-top:6px;
+  margin-top:6px;
 
-color:#64748B;
+  color:var(--text-secondary);
 
 }
-
-
 
 .audit-icon{
 
-height:60px;
+  width:64px;
+  height:64px;
 
-width:60px;
+  border-radius:18px;
 
-border-radius:18px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-display:flex;
+  color:#fff;
 
-align-items:center;
-
-justify-content:center;
-
-font-size:25px;
-
-color:white;
+  font-size:26px;
 
 }
 
-
-.blue{
-
-background:#2563EB;
-
+.audit-icon.blue{
+  background:var(--gradient-primary);
 }
 
-.green{
-
-background:#16A34A;
-
+.audit-icon.green{
+  background:linear-gradient(135deg,#16A34A,#22C55E);
 }
 
-.red{
-
-background:#DC2626;
-
+.audit-icon.red{
+  background:linear-gradient(135deg,#DC2626,#EF4444);
 }
 
-.orange{
-
-background:#F59E0B;
-
+.audit-icon.orange{
+  background:linear-gradient(135deg,#D97706,#F59E0B);
 }
 
-
-
-
-
-/* HEADER */
-
+/* ==========================================================
+   HEADER
+========================================================== */
 
 .audit-top{
 
-background:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:22px;
 
-padding:25px;
+  padding:26px;
 
-border-radius:22px;
+  background:var(--gradient-card);
 
-display:flex;
+  border:1px solid var(--border-primary);
 
-justify-content:space-between;
+  border-radius:22px;
 
-align-items:center;
-
-gap:20px;
-
-border:1px solid #E2E8F0;
+  box-shadow:var(--shadow-card);
 
 }
-
-
 
 .audit-top h1{
 
-margin:0;
+  margin:0;
 
-font-size:30px;
+  color:var(--text-primary);
 
-color:#0F172A;
+  font-size:32px;
 
 }
-
 
 .audit-top p{
 
-color:#64748B;
+  margin-top:8px;
+
+  color:var(--text-secondary);
 
 }
 
-
-
-
+/* ==========================================================
+   TOOLS
+========================================================== */
 
 .audit-tools{
 
-display:flex;
-
-gap:15px;
-
-align-items:center;
+  display:flex;
+  gap:15px;
+  align-items:center;
+  flex-wrap:wrap;
 
 }
-
-
 
 .audit-search{
 
-display:flex;
+  display:flex;
+  align-items:center;
+  gap:12px;
 
-align-items:center;
+  padding:12px 18px;
 
-gap:10px;
+  background:var(--bg-card);
 
-background:#F8FAFC;
+  border:1px solid var(--border-primary);
 
-padding:12px 16px;
-
-border-radius:14px;
-
-border:1px solid #CBD5E1;
+  border-radius:14px;
 
 }
-
-
 
 .audit-search input{
 
-border:none;
+  width:260px;
 
-outline:none;
+  background:none;
 
-background:none;
-
-width:260px;
+  color:var(--text-primary);
 
 }
 
+.audit-search input::placeholder{
 
+  color:var(--text-muted);
 
-
+}
 
 .audit-tools select{
 
-padding:13px;
+  padding:13px 16px;
 
-border-radius:12px;
+  border-radius:12px;
 
-border:1px solid #CBD5E1;
+  background:var(--bg-card);
+
+  color:var(--text-primary);
+
+  border:1px solid var(--border-primary);
 
 }
-
-
-
 
 .audit-tools button{
 
-background:#2563EB;
+  padding:13px 20px;
 
-color:white;
+  border:none;
 
-border:none;
+  border-radius:12px;
 
-padding:13px 20px;
+  background:var(--gradient-primary);
 
-border-radius:12px;
+  color:#fff;
 
-cursor:pointer;
+  font-weight:700;
 
-font-weight:700;
+  cursor:pointer;
+
+  transition:var(--transition-normal);
 
 }
 
+.audit-tools button:hover{
 
+  transform:translateY(-2px);
 
+  box-shadow:var(--shadow-blue);
 
+}
 
-/* TABLE */
-
+/* ==========================================================
+   TABLE
+========================================================== */
 
 .audit-table-box{
 
-background:white;
+  overflow:auto;
 
-border-radius:22px;
+  background:var(--gradient-card);
 
-overflow:auto;
+  border:1px solid var(--border-primary);
 
-border:1px solid #E2E8F0;
+  border-radius:22px;
+
+  box-shadow:var(--shadow-card);
 
 }
-
-
 
 .audit-table-box table{
 
-width:100%;
+  width:100%;
 
-border-collapse:collapse;
+  border-collapse:collapse;
 
 }
-
-
 
 .audit-table-box thead{
 
-background:#1E3A8A;
+  background:var(--table-header);
 
 }
-
-
 
 .audit-table-box th{
 
-padding:18px;
+  padding:18px;
 
-color:white;
+  color:var(--text-secondary);
 
-text-align:left;
+  text-transform:uppercase;
+
+  letter-spacing:.05em;
+
+  text-align:left;
+
+  font-size:.82rem;
 
 }
-
-
 
 .audit-table-box td{
 
-padding:18px;
+  padding:18px;
 
-border-bottom:1px solid #E5E7EB;
+  color:var(--text-primary);
 
-color:#334155;
-
-}
-
-
-
-.audit-table-box tr:hover{
-
-background:#F8FAFC;
+  border-bottom:1px solid var(--border-secondary);
 
 }
 
+.audit-table-box tbody tr{
 
+  transition:.25s;
 
+}
 
+.audit-table-box tbody tr:hover{
+
+  background:var(--table-hover);
+
+}
+
+/* ==========================================================
+   STATUS
+========================================================== */
 
 .status-pill,
 .risk-pill{
 
-padding:7px 14px;
+  display:inline-flex;
 
-border-radius:20px;
+  align-items:center;
 
-font-weight:700;
+  justify-content:center;
 
-font-size:13px;
+  padding:8px 14px;
+
+  border-radius:999px;
+
+  font-size:13px;
+
+  font-weight:700;
 
 }
-
-
 
 .success,
 .low{
 
-background:#DCFCE7;
+  background:var(--success-light);
 
-color:#15803D;
+  color:var(--success);
 
 }
-
-
 
 .failed,
 .critical{
 
-background:#FEE2E2;
+  background:var(--danger-light);
 
-color:#DC2626;
+  color:var(--danger);
 
 }
-
-
 
 .high{
 
-background:#FED7AA;
+  background:var(--warning-light);
 
-color:#C2410C;
+  color:#F97316;
 
 }
-
-
 
 .medium{
 
-background:#FEF3C7;
+  background:rgba(245,158,11,.12);
 
-color:#CA8A04;
+  color:var(--warning);
 
 }
 
-
-
-
+/* ==========================================================
+   EMPTY
+========================================================== */
 
 .empty-row{
 
-text-align:center;
+  text-align:center;
 
-padding:50px;
+  padding:60px;
 
-color:#64748B;
+  color:var(--text-muted);
 
 }
 
-
-
-
+/* ==========================================================
+   LOADING
+========================================================== */
 
 .audit-loading,
 .audit-error{
 
-height:50vh;
+  display:flex;
 
-display:flex;
+  justify-content:center;
 
-justify-content:center;
+  align-items:center;
 
-align-items:center;
+  height:50vh;
 
-font-size:22px;
+  font-size:22px;
 
-font-weight:700;
+  font-weight:700;
+
+  color:var(--text-primary);
 
 }
-
-
 
 .audit-error{
 
-color:#DC2626;
+  color:var(--danger);
 
 }
 
-
-
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
 
 @media(max-width:1100px){
-
 
 .audit-summary{
 
 grid-template-columns:repeat(2,1fr);
 
 }
-
 
 .audit-top{
 
@@ -433,22 +419,15 @@ align-items:flex-start;
 
 }
 
-
 .audit-tools{
 
 width:100%;
 
-flex-wrap:wrap;
-
 }
 
-
 }
-
-
 
 @media(max-width:700px){
-
 
 .audit-summary{
 
@@ -456,12 +435,31 @@ grid-template-columns:1fr;
 
 }
 
+.audit-search{
 
-.audit-search input{
-
-width:150px;
+width:100%;
 
 }
 
+.audit-search input{
+
+width:100%;
+
+}
+
+.audit-tools{
+
+flex-direction:column;
+
+align-items:stretch;
+
+}
+
+.audit-tools select,
+.audit-tools button{
+
+width:100%;
+
+}
 
 }

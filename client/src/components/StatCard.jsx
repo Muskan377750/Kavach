@@ -62,7 +62,7 @@ function ProgressRing({ progress, color }) {
     <svg className="progress-ring" width="70" height="70">
       <circle
         className="ring-bg"
-        stroke="#233046"
+        stroke="var(--ring-bg)"
         strokeWidth="6"
         fill="transparent"
         r={radius}

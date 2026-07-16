@@ -1,147 +1,268 @@
+/* ==========================================================
+   KAVACH SOC
+   SETTINGS PAGE
+========================================================== */
+
 .settings-page{
 
+    min-height:100vh;
 
-margin-left:260px;
+    padding:110px 35px 40px;
 
-padding:110px 35px;
-
-min-height:100vh;
-
-background:var(--bg-primary);
+    background:var(--bg-primary);
 
 }
 
+/* ==========================================================
+   HEADER
+========================================================== */
 
+.settings-header{
+
+    margin-bottom:35px;
+
+}
 
 .settings-header h1{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:12px;
+    gap:12px;
 
-color:white;
+    margin:0;
 
-font-size:32px;
+    color:var(--text-primary);
+
+    font-size:34px;
+
+    font-weight:800;
 
 }
-
-
 
 .settings-header p{
 
-color:var(--text-muted);
+    margin-top:10px;
 
-margin-top:8px;
+    color:var(--text-secondary);
+
+    font-size:15px;
+
+    line-height:1.7;
 
 }
 
-
-
-
+/* ==========================================================
+   GRID
+========================================================== */
 
 .settings-grid{
 
-margin-top:35px;
+    display:grid;
 
-display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
 
-grid-template-columns:repeat(2,1fr);
-
-gap:25px;
+    gap:24px;
 
 }
 
-
-
+/* ==========================================================
+   CARD
+========================================================== */
 
 .settings-card{
 
+    position:relative;
 
-background:var(--bg-card);
+    overflow:hidden;
 
-border:1px solid var(--border-primary);
+    display:flex;
 
-border-radius:22px;
+    align-items:center;
 
-padding:25px;
+    gap:20px;
 
-display:flex;
+    padding:26px;
 
-align-items:center;
+    background:var(--gradient-card);
 
-gap:20px;
+    border:1px solid var(--border-primary);
 
-box-shadow:var(--shadow-card);
+    border-radius:22px;
+
+    box-shadow:var(--shadow-card);
+
+    transition:var(--transition-normal);
 
 }
 
+.settings-card:hover{
 
+    transform:translateY(-6px);
+
+    border-color:var(--primary-blue);
+
+    box-shadow:
+        var(--shadow-large),
+        var(--shadow-blue);
+
+}
+
+.settings-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.06),
+        transparent
+    );
+
+    transition:.8s;
+
+}
+
+.settings-card:hover::before{
+
+    left:140%;
+
+}
+
+/* ==========================================================
+   ICON
+========================================================== */
 
 .settings-card svg{
 
-font-size:32px;
+    width:60px;
 
-color:#3b82f6;
+    height:60px;
+
+    padding:16px;
+
+    flex-shrink:0;
+
+    border-radius:18px;
+
+    background:rgba(59,130,246,.12);
+
+    color:var(--primary-blue);
+
+    transition:var(--transition-normal);
 
 }
 
+.settings-card:hover svg{
 
+    transform:rotate(-8deg) scale(1.08);
+
+    box-shadow:var(--shadow-blue);
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.settings-info{
+
+    flex:1;
+
+}
 
 .settings-card h3{
 
-color:white;
+    margin:0 0 8px;
+
+    color:var(--text-primary);
+
+    font-size:18px;
+
+    font-weight:700;
 
 }
-
-
 
 .settings-card p{
 
-color:#94a3b8;
+    margin:0;
 
-font-size:14px;
+    color:var(--text-secondary);
+
+    font-size:14px;
+
+    line-height:1.6;
 
 }
 
-
+/* ==========================================================
+   STATUS BADGE
+========================================================== */
 
 .settings-card span{
 
-margin-left:auto;
+    margin-left:auto;
 
-padding:7px 15px;
+    padding:8px 16px;
 
-border-radius:20px;
+    border-radius:999px;
 
-font-size:12px;
+    font-size:12px;
 
-font-weight:700;
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
 
 }
-
-
 
 .active{
 
-background:rgba(34,197,94,.15);
+    background:var(--success-light);
 
-color:#22c55e;
+    color:var(--success);
 
 }
 
+.inactive{
 
+    background:rgba(239,68,68,.12);
 
-@media(max-width:900px){
+    color:var(--danger);
 
+}
+
+.warning{
+
+    background:var(--warning-light);
+
+    color:var(--warning);
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:992px){
 
 .settings-page{
 
-margin-left:80px;
+padding:100px 24px 30px;
 
 }
-
 
 .settings-grid{
 
@@ -149,5 +270,58 @@ grid-template-columns:1fr;
 
 }
 
+}
+
+@media(max-width:768px){
+
+.settings-header h1{
+
+font-size:28px;
+
+}
+
+.settings-card{
+
+padding:22px;
+
+gap:16px;
+
+}
+
+.settings-card svg{
+
+width:52px;
+
+height:52px;
+
+padding:14px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.settings-page{
+
+padding:90px 16px 20px;
+
+}
+
+.settings-card{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.settings-card span{
+
+margin-left:0;
+
+margin-top:14px;
+
+}
 
 }

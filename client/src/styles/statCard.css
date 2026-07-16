@@ -1,75 +1,99 @@
-/* ===============================
-   Enterprise SOC Stat Cards
-================================= */
+/* ==========================================================
+   KAVACH SOC
+   ENTERPRISE STAT CARDS
+========================================================== */
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  margin-bottom: 30px;
+/* ==========================================================
+   GRID
+========================================================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:24px;
+
+    margin-bottom:30px;
+
 }
 
-.stat-card {
-  position: relative;
-  overflow: hidden;
+/* ==========================================================
+   CARD
+========================================================== */
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.stat-card{
 
-  min-height: 180px;
+    position:relative;
 
-  padding: 24px;
+    overflow:hidden;
 
-  border-radius: 22px;
+    display:flex;
 
-  background: linear-gradient(
-      145deg,
-      rgba(22, 28, 45, 0.98),
-      rgba(16, 21, 36, 0.95)
-  );
+    flex-direction:column;
 
-  border: 1px solid rgba(255,255,255,.06);
+    justify-content:space-between;
 
-  box-shadow:
-      0 10px 35px rgba(0,0,0,.35),
-      inset 0 1px rgba(255,255,255,.03);
+    min-height:185px;
 
-  transition: .35s ease;
+    padding:26px;
+
+    border-radius:var(--radius-xl);
+
+    background:var(--gradient-card);
+
+    border:1px solid var(--border-primary);
+
+    box-shadow:var(--shadow-card);
+
+    transition:var(--transition-normal);
+
+    cursor:pointer;
+
 }
 
 .stat-card:hover{
 
-    transform: translateY(-8px);
+    transform:translateY(var(--hover-lift));
 
-    border-color: rgba(59,130,246,.45);
+    border-color:var(--primary-blue);
 
     box-shadow:
-        0 25px 50px rgba(0,0,0,.45),
-        0 0 35px rgba(59,130,246,.18);
+        var(--shadow-large),
+        var(--shadow-blue);
+
 }
 
-/* Glow */
+/* ==========================================================
+   GLOW
+========================================================== */
 
 .stat-card-glow{
 
     position:absolute;
 
-    width:240px;
-    height:240px;
-
-    right:-110px;
     top:-110px;
 
-    background: radial-gradient(
-        rgba(59,130,246,.18),
-        transparent 70%
-    );
+    right:-110px;
+
+    width:240px;
+
+    height:240px;
+
+    background:
+        radial-gradient(
+            rgba(59,130,246,.18),
+            transparent 70%
+        );
 
     pointer-events:none;
+
 }
 
-/* ---------- Top ---------- */
+/* ==========================================================
+   TOP
+========================================================== */
 
 .stat-top{
 
@@ -78,20 +102,26 @@
     justify-content:space-between;
 
     align-items:flex-start;
+
 }
+
+/* ==========================================================
+   ICON
+========================================================== */
 
 .stat-icon{
 
     width:62px;
-    height:62px;
 
-    border-radius:18px;
+    height:62px;
 
     display:flex;
 
+    justify-content:center;
+
     align-items:center;
 
-    justify-content:center;
+    border-radius:18px;
 
     font-size:28px;
 
@@ -99,37 +129,48 @@
         inset 0 0 10px rgba(255,255,255,.08),
         0 10px 25px rgba(0,0,0,.25);
 
-    transition:.3s;
+    transition:var(--transition-normal);
+
 }
 
 .stat-card:hover .stat-icon{
 
     transform:rotate(-8deg) scale(1.08);
+
 }
 
-/* ---------- Ring ---------- */
+/* ==========================================================
+   PROGRESS RING
+========================================================== */
 
 .stat-ring{
 
     position:relative;
 
     width:70px;
+
     height:70px;
+
 }
 
 .progress-ring{
 
     transform:rotate(-90deg);
+
 }
 
 .ring-bg{
 
+    stroke:var(--ring-bg);
+
     opacity:.18;
+
 }
 
 .ring-progress{
 
     transition:stroke-dashoffset 1s ease;
+
 }
 
 .stat-ring span{
@@ -144,49 +185,58 @@
 
     align-items:center;
 
+    color:var(--text-secondary);
+
     font-size:12px;
 
     font-weight:700;
 
-    color:#cbd5e1;
 }
-
-/* ---------- Content ---------- */
+/* ==========================================================
+   CONTENT
+========================================================== */
 
 .stat-content{
 
-    margin-top:18px;
+    margin-top:20px;
+
 }
 
 .stat-title{
 
-    color:#94a3b8;
+    margin-bottom:10px;
+
+    color:var(--text-secondary);
 
     font-size:.9rem;
 
     font-weight:600;
 
-    margin-bottom:10px;
-
     text-transform:uppercase;
 
     letter-spacing:1px;
+
 }
 
 .stat-value{
 
-    color:#fff;
+    margin-bottom:18px;
+
+    color:var(--text-primary);
 
     font-size:2.2rem;
 
-    font-weight:700;
-
-    margin-bottom:18px;
+    font-weight:800;
 
     letter-spacing:-1px;
+
+    line-height:1;
+
 }
 
-/* ---------- Bottom ---------- */
+/* ==========================================================
+   FOOTER
+========================================================== */
 
 .stat-bottom{
 
@@ -195,6 +245,9 @@
     justify-content:space-between;
 
     align-items:center;
+
+    gap:12px;
+
 }
 
 .trend-pill{
@@ -211,121 +264,184 @@
 
     background:rgba(59,130,246,.12);
 
-    color:#60a5fa;
+    border:1px solid rgba(59,130,246,.25);
+
+    color:var(--primary-blue-light);
 
     font-size:.78rem;
 
-    font-weight:600;
+    font-weight:700;
 
-    border:1px solid rgba(59,130,246,.25);
 }
 
 .trend-pill svg{
 
     font-size:.9rem;
+
 }
 
 .pulse-dot{
 
     width:12px;
+
     height:12px;
 
     border-radius:50%;
 
-    animation:pulse 1.5s infinite;
+    animation:pulse 1.6s infinite;
+
 }
 
-/* ---------- Pulse ---------- */
+/* ==========================================================
+   PULSE
+========================================================== */
 
 @keyframes pulse{
 
 0%{
 
 box-shadow:0 0 0 0 currentColor;
+
 }
 
 70%{
 
 box-shadow:0 0 0 10px transparent;
+
 }
 
 100%{
 
 box-shadow:0 0 0 0 transparent;
-}
 
 }
 
-/* ---------- Shine ---------- */
+}
+
+/* ==========================================================
+   SHINE EFFECT
+========================================================== */
 
 .stat-card::before{
 
-content:"";
+    content:"";
 
-position:absolute;
+    position:absolute;
 
-top:0;
+    top:0;
 
-left:-120%;
+    left:-130%;
 
-width:60%;
+    width:60%;
 
-height:100%;
+    height:100%;
 
-background:linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.08),
-transparent
-);
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+    );
 
-transition:.8s;
+    transition:.8s;
+
 }
 
 .stat-card:hover::before{
 
-left:140%;
+    left:140%;
+
 }
 
-/* ---------- Responsive ---------- */
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
 
 @media(max-width:992px){
 
-.stats-grid{
+    .stats-grid{
 
-grid-template-columns:repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
 
-}
+    }
 
 }
 
 @media(max-width:650px){
 
-.stats-grid{
+    .stats-grid{
 
-grid-template-columns:1fr;
+        grid-template-columns:1fr;
 
-}
+    }
 
-.stat-card{
+    .stat-card{
 
-padding:20px;
+        padding:20px;
 
-}
+        min-height:170px;
 
-.stat-value{
+    }
 
-font-size:1.9rem;
+    .stat-icon{
 
-}
+        width:55px;
 
-.stat-icon{
+        height:55px;
 
-width:55px;
-height:55px;
+        font-size:24px;
 
-font-size:24px;
+    }
 
-}
+    .stat-ring{
+
+        width:60px;
+
+        height:60px;
+
+    }
+
+    .progress-ring{
+
+        width:60px;
+
+        height:60px;
+
+    }
+
+    .stat-ring span{
+
+        font-size:11px;
+
+    }
+
+    .stat-title{
+
+        font-size:.82rem;
+
+    }
+
+    .stat-value{
+
+        font-size:1.9rem;
+
+    }
+
+    .trend-pill{
+
+        padding:7px 12px;
+
+        font-size:.72rem;
+
+    }
+
+    .pulse-dot{
+
+        width:10px;
+
+        height:10px;
+
+    }
 
 }

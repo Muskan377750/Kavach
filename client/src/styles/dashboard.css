@@ -1,32 +1,7 @@
 /* ==========================================================
    KAVACH SOC DASHBOARD
-   Enterprise Layout - Part 1
+   Enterprise Layout
 ========================================================== */
-
-:root{
-    --sidebar-width:280px;
-    --sidebar-collapsed:88px;
-
-    --content-width:1600px;
-
-    --page-gap:24px;
-
-    --panel-bg:rgba(18,24,39,.92);
-
-    --panel-border:rgba(255,255,255,.08);
-
-    --panel-radius:22px;
-
-    --panel-shadow:
-        0 10px 35px rgba(0,0,0,.35);
-
-    --text:#F8FAFC;
-
-    --muted:#94A3B8;
-
-    --primary:#3B82F6;
-}
-
 
 /* ==========================================================
    PAGE
@@ -38,9 +13,9 @@
 
     min-height:100vh;
 
-    background:#0F172A;
-}
+    background:var(--bg-primary);
 
+}
 
 /* ==========================================================
    MAIN
@@ -50,20 +25,25 @@
 
     flex:1;
 
-    margin-left:var(--sidebar-width);
+    margin-left:var(--sidebar-expanded);
 
-    transition:.35s;
+    width:calc(100% - var(--sidebar-expanded));
 
     min-height:100vh;
 
     overflow-x:hidden;
+
+    transition:var(--transition-normal);
+
 }
 
 .dashboard-main.collapsed{
 
     margin-left:var(--sidebar-collapsed);
-}
 
+    width:calc(100% - var(--sidebar-collapsed));
+
+}
 
 /* ==========================================================
    CONTENT
@@ -73,13 +53,13 @@
 
     width:100%;
 
-    max-width:var(--content-width);
+    max-width:1650px;
 
     margin:auto;
 
-    padding:0 var(--page-gap) 40px;
-}
+    padding:0 24px 40px;
 
+}
 
 /* ==========================================================
    HEADER
@@ -93,31 +73,34 @@
 
     align-items:flex-start;
 
-    gap:30px;
+    gap:32px;
 
-    margin-bottom:30px;
+    margin-bottom:34px;
+
 }
 
 .dashboard-header h1{
 
-    margin:12px 0 10px;
+    margin:14px 0 10px;
 
-    color:var(--text);
+    color:var(--text-primary);
 
-    font-size:38px;
+    font-size:40px;
 
     font-weight:800;
 
     letter-spacing:-1px;
+
 }
 
 .dashboard-header p{
 
-    color:var(--muted);
-
     max-width:760px;
 
+    color:var(--text-secondary);
+
     line-height:1.8;
+
 }
 
 .dashboard-badge{
@@ -132,9 +115,9 @@
 
     border-radius:999px;
 
-    background:rgba(59,130,246,.14);
+    background:rgba(59,130,246,.12);
 
-    color:#60A5FA;
+    color:var(--primary-blue);
 
     font-size:12px;
 
@@ -143,6 +126,7 @@
     letter-spacing:1px;
 
     text-transform:uppercase;
+
 }
 
 .dashboard-actions{
@@ -151,33 +135,34 @@
 
     align-items:center;
 
-    gap:16px;
+    gap:18px;
+
 }
 
-
 /* ==========================================================
-   SECTIONS
+   SECTION
 ========================================================== */
 
 .dashboard-section{
 
     margin-top:36px;
+
 }
 
 .section-title{
 
-    margin-bottom:18px;
+    margin-bottom:20px;
 
-    color:#fff;
+    color:var(--text-primary);
 
     font-size:22px;
 
     font-weight:700;
+
 }
 
-
 /* ==========================================================
-   PANELS
+   PANEL
 ========================================================== */
 
 .dashboard-panel{
@@ -186,29 +171,86 @@
 
     overflow:hidden;
 
-    background:var(--panel-bg);
+    background:var(--gradient-card);
 
-    border:1px solid var(--panel-border);
+    border:1px solid var(--border-primary);
 
-    border-radius:var(--panel-radius);
+    border-radius:22px;
 
     padding:24px;
 
-    box-shadow:var(--panel-shadow);
+    box-shadow:var(--shadow-card);
 
-    transition:.35s;
+    transition:var(--transition-normal);
+
 }
 
 .dashboard-panel:hover{
 
     transform:translateY(-5px);
 
-    border-color:rgba(59,130,246,.35);
+    border-color:var(--primary-blue);
 
     box-shadow:
-        0 18px 45px rgba(0,0,0,.45);
+        var(--shadow-large),
+        var(--shadow-blue);
+
 }
 
+/* ==========================================================
+   PANEL SHINE
+========================================================== */
+
+.dashboard-panel::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+    radial-gradient(
+        circle at top right,
+        rgba(59,130,246,.10),
+        transparent 45%
+    );
+
+}
+
+.dashboard-panel::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.05),
+        transparent
+    );
+
+    transition:.9s;
+
+}
+
+.dashboard-panel:hover::after{
+
+    left:150%;
+
+}
 
 /* ==========================================================
    GRID
@@ -223,6 +265,7 @@
     gap:24px;
 
     margin-bottom:34px;
+
 }
 
 .charts-grid{
@@ -232,6 +275,7 @@
     grid-template-columns:2fr 1fr;
 
     gap:24px;
+
 }
 
 .dashboard-two-column{
@@ -241,42 +285,8 @@
     grid-template-columns:1.4fr 1fr;
 
     gap:24px;
+
 }
-
-
-/* ==========================================================
-   PANEL SHINE
-========================================================== */
-
-.dashboard-panel::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:-120%;
-
-    width:60%;
-
-    height:100%;
-
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.05),
-        transparent
-    );
-
-    transition:.8s;
-}
-
-.dashboard-panel:hover::before{
-
-    left:150%;
-}
-
 
 /* ==========================================================
    PANEL TITLE
@@ -291,33 +301,36 @@
     align-items:center;
 
     margin-bottom:20px;
+
 }
 
 .panel-title h3{
 
-    color:#fff;
+    margin:0;
+
+    color:var(--text-primary);
 
     font-size:18px;
 
     font-weight:700;
+
 }
 /* ==========================================================
-   KAVACH SOC DASHBOARD
-   Enterprise Layout - Part 2
+   TABLES
 ========================================================== */
 
-/* ===========================
-   TABLES
-=========================== */
-
 .dashboard-table{
+
     width:100%;
+
     border-collapse:collapse;
+
 }
 
 .dashboard-table thead{
 
-    background:rgba(255,255,255,.03);
+    background:var(--table-header);
+
 }
 
 .dashboard-table th{
@@ -326,7 +339,7 @@
 
     text-align:left;
 
-    color:#94A3B8;
+    color:var(--text-secondary);
 
     font-size:13px;
 
@@ -336,62 +349,92 @@
 
     letter-spacing:1px;
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid var(--border-primary);
+
 }
 
 .dashboard-table td{
 
     padding:18px 16px;
 
-    color:#E2E8F0;
+    color:var(--text-primary);
 
-    border-bottom:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid var(--border-secondary);
+
 }
 
 .dashboard-table tbody tr{
 
-    transition:.25s;
+    transition:var(--transition-fast);
+
 }
 
 .dashboard-table tbody tr:hover{
 
-    background:rgba(59,130,246,.06);
+    background:var(--table-hover);
+
 }
 
-/* ===========================
-   SCROLLBAR
-=========================== */
+/* ==========================================================
+   LIVE CLOCK
+========================================================== */
 
-::-webkit-scrollbar{
+.dashboard-actions{
 
-    width:10px;
-    height:10px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    gap:18px;
+
 }
 
-::-webkit-scrollbar-track{
+/* ==========================================================
+   CHART FIX
+========================================================== */
 
-    background:#0F172A;
+.charts-grid>.dashboard-panel{
+
+    min-height:420px;
+
+    display:flex;
+
+    flex-direction:column;
+
 }
 
-::-webkit-scrollbar-thumb{
+.dashboard-two-column>.dashboard-panel{
 
-    background:#334155;
+    min-height:500px;
 
-    border-radius:999px;
 }
 
-::-webkit-scrollbar-thumb:hover{
+/* ==========================================================
+   SPACING
+========================================================== */
 
-    background:#3B82F6;
+.stats-grid+.dashboard-section{
+
+    margin-top:10px;
+
 }
 
-/* ===========================
+.dashboard-section+.dashboard-section{
+
+    margin-top:38px;
+
+}
+
+/* ==========================================================
    FADE ANIMATION
-=========================== */
+========================================================== */
 
 .dashboard-content>*{
 
     animation:fadeUp .45s ease both;
+
 }
 
 @keyframes fadeUp{
@@ -401,6 +444,7 @@ from{
     opacity:0;
 
     transform:translateY(20px);
+
 }
 
 to{
@@ -408,70 +452,53 @@ to{
     opacity:1;
 
     transform:none;
-}
 
 }
 
-/* ===========================
-   LIVE CLOCK
-=========================== */
-
-.dashboard-actions{
-
-    display:flex;
-
-    justify-content:flex-end;
-
-    align-items:center;
-
-    gap:18px;
 }
 
-/* ===========================
-   CHART FIX
-=========================== */
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
 
-.charts-grid>.dashboard-panel{
+::-webkit-scrollbar{
 
-    min-height:420px;
+    width:10px;
 
-    display:flex;
+    height:10px;
 
-    flex-direction:column;
 }
 
-/* ===========================
-   TWO COLUMN
-=========================== */
+::-webkit-scrollbar-track{
 
-.dashboard-two-column>.dashboard-panel{
+    background:var(--bg-secondary);
 
-    min-height:500px;
 }
 
-/* ===========================
-   SPACING
-=========================== */
+::-webkit-scrollbar-thumb{
 
-.stats-grid+.dashboard-section{
+    background:var(--text-muted);
 
-    margin-top:10px;
+    border-radius:999px;
+
 }
 
-.dashboard-section+.dashboard-section{
+::-webkit-scrollbar-thumb:hover{
 
-    margin-top:38px;
+    background:var(--primary-blue);
+
 }
 
-/* ===========================
+/* ==========================================================
    RESPONSIVE
-=========================== */
+========================================================== */
 
 @media(max-width:1500px){
 
 .dashboard-content{
 
     max-width:100%;
+
 }
 
 }
@@ -481,11 +508,13 @@ to{
 .charts-grid{
 
     grid-template-columns:1fr;
+
 }
 
 .dashboard-two-column{
 
     grid-template-columns:1fr;
+
 }
 
 .dashboard-header{
@@ -493,6 +522,7 @@ to{
     flex-direction:column;
 
     align-items:flex-start;
+
 }
 
 .dashboard-actions{
@@ -500,20 +530,17 @@ to{
     width:100%;
 
     justify-content:flex-start;
+
 }
 
 }
 
 @media(max-width:992px){
 
-.dashboard-main{
-
-    margin-left:88px;
-}
-
 .stats-grid{
 
     grid-template-columns:repeat(2,1fr);
+
 }
 
 }
@@ -523,31 +550,39 @@ to{
 .dashboard-main{
 
     margin-left:0;
+
+    width:100%;
+
 }
 
 .dashboard-content{
 
     padding:18px;
+
 }
 
 .stats-grid{
 
     grid-template-columns:1fr;
+
 }
 
 .dashboard-header h1{
 
     font-size:30px;
+
 }
 
 .dashboard-panel{
 
     padding:18px;
+
 }
 
 .section-title{
 
     font-size:20px;
+
 }
 
 }
@@ -557,55 +592,25 @@ to{
 .dashboard-content{
 
     padding:14px;
+
 }
 
 .dashboard-header h1{
 
     font-size:26px;
+
 }
 
 .dashboard-header p{
 
     font-size:14px;
+
 }
 
 .dashboard-badge{
 
     font-size:10px;
-}
 
 }
 
-/* ===========================
-   GLASS OVERLAY
-=========================== */
-
-.dashboard-panel::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:linear-gradient(
-        180deg,
-        rgba(255,255,255,.02),
-        transparent 30%
-    );
-
-    pointer-events:none;
-}
-
-/* ===========================
-   PANEL HOVER BORDER
-=========================== */
-
-.dashboard-panel:hover{
-
-    border-color:rgba(59,130,246,.30);
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.45),
-        0 0 30px rgba(59,130,246,.08);
 }

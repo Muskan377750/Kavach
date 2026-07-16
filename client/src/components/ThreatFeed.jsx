@@ -40,7 +40,7 @@ function formatTime(time) {
   }
 }
 
-function ThreatFeed({ alerts = [] }) {
+function ThreatFeed({ alerts = [], onViewAlert }) {
   if (!alerts.length) {
     return (
       <div className="threat-empty">
@@ -51,8 +51,8 @@ function ThreatFeed({ alerts = [] }) {
         <h3>No Active Threats</h3>
 
         <p>
-          All monitored banking systems are operating
-          normally. No suspicious activity detected.
+          All monitored banking systems are operating normally. No suspicious
+          activity detected.
         </p>
       </div>
     );
@@ -64,10 +64,7 @@ function ThreatFeed({ alerts = [] }) {
         <div>
           <h2>Live Threat Activity</h2>
 
-          <p>
-            Real-time suspicious events from across the
-            banking network
-          </p>
+          <p>Real-time suspicious events from across the banking network</p>
         </div>
 
         <div className="live-indicator">
@@ -79,35 +76,26 @@ function ThreatFeed({ alerts = [] }) {
       <div className="threat-feed">
         {alerts.slice(0, 8).map((alert, index) => {
           const severity =
-            severityConfig[alert.severity] ||
+            severityConfig[alert.severity || alert.riskLevel] ||
             severityConfig.Low;
 
           return (
             <div
               className="threat-item"
               key={alert.id || alert._id || index}
+              onClick={() => onViewAlert(alert)}
             >
-              <div
-                className={`severity-line ${severity.className}`}
-              />
+              <div className={`severity-line ${severity.className}`} />
 
               <div className="threat-content">
                 <div className="threat-top">
                   <div>
-                    <h4>
-                      {alert.title ||
-                        "Suspicious Banking Activity"}
-                    </h4>
+                    <h4>{alert.title || alert.alertType}</h4>
 
-                    <p>
-                      {alert.description ||
-                        "Potential insider threat detected."}
-                    </p>
+                    <p>{alert.description || alert.message}</p>
                   </div>
 
-                  <span
-                    className={`severity-badge ${severity.className}`}
-                  >
+                  <span className={`severity-badge ${severity.className}`}>
                     {severity.label}
                   </span>
                 </div>
@@ -115,27 +103,20 @@ function ThreatFeed({ alerts = [] }) {
                 <div className="threat-footer">
                   <span>
                     <FiClock />
-                    {formatTime(
-                      alert.createdAt || alert.time
-                    )}
+                    {formatTime(alert.createdAt || alert.time)}
                   </span>
 
                   <span>
                     <FiMapPin />
-                    {alert.location ||
-                      "Head Office"}
+                    {alert.location || alert.user?.department || "Head Office"}
                   </span>
 
-                  <button className="threat-view-btn">
-                    View
-                    <FiChevronRight />
-                  </button>
                 </div>
               </div>
             </div>
           );
         })}
-              </div>
+      </div>
     </div>
   );
 }

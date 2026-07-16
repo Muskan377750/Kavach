@@ -4,27 +4,37 @@ const AuditLog = require("../models/AuditLog");
 
 const getDashboardData = async (req, res) => {
   try {
-    // ===========================
-    // Statistics
-    // ===========================
-
-    const activeEmployees = await User.countDocuments();
-
-    const openAlerts = await Alert.countDocuments({
-      status: "Open",
-    });
-
-    const auditLogs = await AuditLog.countDocuments();
-
-    const highRiskUsers = await Alert.distinct("user", {
-      riskLevel: {
-        $in: ["High", "Critical"],
-      },
-      status: "Open",
-    });
 
     // ===========================
-    // Top High Risk Employees
+    // Dashboard Counts
+    // ===========================
+
+    const [
+      activeEmployees,
+      openAlerts,
+      auditLogs,
+      highRiskUsers,
+    ] = await Promise.all([
+      User.countDocuments(),
+      Alert.countDocuments({ status: "Open" }),
+      AuditLog.countDocuments(),
+      Alert.distinct("user", {
+        riskLevel: { $in: ["High", "Critical"] },
+        status: "Open",
+      }),
+    ]);
+
+    // ===========================
+    // Recent Alerts (FOR THREAT FEED)
+    // ===========================
+
+    const recentAlerts = await Alert.find()
+      .populate("user", "name department")
+      .sort({ createdAt: -1 })
+      .limit(8);
+
+    // ===========================
+    // Top Risk Employees
     // ===========================
 
     const users = await User.find().select("-password");
@@ -39,7 +49,9 @@ const getDashboardData = async (req, res) => {
         let riskScore = 0;
 
         alerts.forEach((alert) => {
+
           switch (alert.riskLevel) {
+
             case "Low":
               riskScore += 10;
               break;
@@ -59,16 +71,23 @@ const getDashboardData = async (req, res) => {
             default:
               break;
           }
+
         });
 
-        if (riskScore > 100) riskScore = 100;
+        riskScore = Math.min(riskScore, 100);
 
         return {
+
           name: user.name,
+
           department: user.department,
+
           role: user.role,
+
           riskScore,
+
         };
+
       })
     );
 
@@ -90,19 +109,26 @@ const getDashboardData = async (req, res) => {
     // ===========================
 
     res.json({
+
       activeEmployees,
+
       openAlerts,
+
       auditLogs,
+
       highRiskUsers: highRiskUsers.length,
+
+      recentAlerts,
 
       topRiskEmployees: topRiskEmployees.slice(0, 5),
 
       recentInvestigations,
+
     });
 
   } catch (error) {
 
-    console.log(error);
+    console.error(error);
 
     res.status(500).json({
       message: error.message,

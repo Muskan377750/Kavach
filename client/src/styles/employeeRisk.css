@@ -1,29 +1,35 @@
-/* ===========================================================
+/* ==========================================================
    KAVACH SOC
    EMPLOYEE RISK MONITOR
-===========================================================*/
+========================================================== */
 
 .employee-monitor{
 
     position:relative;
 
-    background:
-        linear-gradient(
-            145deg,
-            #111827,
-            #0F172A
-        );
+    overflow:hidden;
 
-    border:1px solid rgba(59,130,246,.15);
+    background:var(--gradient-card);
+
+    border:1px solid var(--border-primary);
 
     border-radius:22px;
 
     padding:24px;
 
-    overflow:hidden;
+    box-shadow:var(--shadow-card);
+
+    transition:var(--transition-normal);
+
+}
+
+.employee-monitor:hover{
+
+    border-color:var(--primary-blue);
 
     box-shadow:
-        0 20px 45px rgba(0,0,0,.35);
+        var(--shadow-large),
+        var(--shadow-blue);
 
 }
 
@@ -33,9 +39,9 @@
 
     position:absolute;
 
-    right:-120px;
-
     top:-120px;
+
+    right:-120px;
 
     width:240px;
 
@@ -44,20 +50,24 @@
     border-radius:50%;
 
     background:
+        radial-gradient(
+            rgba(59,130,246,.15),
+            transparent 70%
+        );
 
-    radial-gradient(
-
-    rgba(59,130,246,.15),
-
-    transparent 70%
-
-    );
+    pointer-events:none;
 
 }
 
-/* =========================================================== */
+/* ==========================================================
+   HEADER
+========================================================== */
 
 .employee-header{
+
+    position:relative;
+
+    z-index:2;
 
     display:flex;
 
@@ -67,17 +77,13 @@
 
     margin-bottom:24px;
 
-    position:relative;
-
-    z-index:2;
-
 }
 
 .employee-header h2{
 
     margin:0;
 
-    color:#F8FAFC;
+    color:var(--text-primary);
 
     font-size:22px;
 
@@ -89,13 +95,15 @@
 
     margin-top:8px;
 
-    color:#94A3B8;
+    color:var(--text-secondary);
 
     font-size:13px;
 
 }
 
-/* =========================================================== */
+/* ==========================================================
+   COUNT
+========================================================== */
 
 .employee-count{
 
@@ -111,9 +119,9 @@
 
     background:rgba(59,130,246,.12);
 
-    border:1px solid rgba(59,130,246,.15);
+    border:1px solid rgba(59,130,246,.18);
 
-    color:#60A5FA;
+    color:var(--primary-blue);
 
     font-size:13px;
 
@@ -121,7 +129,9 @@
 
 }
 
-/* =========================================================== */
+/* ==========================================================
+   LIST
+========================================================== */
 
 .employee-list{
 
@@ -133,11 +143,15 @@
 
 }
 
-/* =========================================================== */
+/* ==========================================================
+   CARD
+========================================================== */
 
 .employee-card{
 
     position:relative;
+
+    overflow:hidden;
 
     display:flex;
 
@@ -149,19 +163,11 @@
 
     border-radius:18px;
 
-    background:
+    background:var(--bg-card);
 
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.04),
-            rgba(255,255,255,.02)
-        );
+    border:1px solid var(--border-primary);
 
-    border:1px solid rgba(255,255,255,.06);
-
-    transition:.3s;
-
-    overflow:hidden;
+    transition:var(--transition-normal);
 
     cursor:pointer;
 
@@ -181,7 +187,7 @@
 
     height:100%;
 
-    background:#F59E0B;
+    background:var(--warning);
 
 }
 
@@ -189,15 +195,44 @@
 
     transform:translateY(-4px);
 
-    border-color:#2563EB;
+    border-color:var(--primary-blue);
 
-    box-shadow:
-
-        0 18px 35px rgba(0,0,0,.30);
+    box-shadow:var(--shadow-card);
 
 }
 
-/* =========================================================== */
+.employee-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(59,130,246,.08),
+            transparent 60%
+        );
+
+    transition:.35s;
+
+}
+
+.employee-card:hover::after{
+
+    opacity:1;
+
+}
+
+/* ==========================================================
+   AVATAR
+========================================================== */
 
 .employee-avatar{
 
@@ -205,7 +240,7 @@
 
     height:56px;
 
-    border-radius:18px;
+    flex-shrink:0;
 
     display:flex;
 
@@ -213,34 +248,22 @@
 
     align-items:center;
 
-    flex-shrink:0;
+    border-radius:18px;
 
-    background:
+    background:var(--gradient-primary);
 
-        linear-gradient(
-            135deg,
-            #3B82F6,
-            #2563EB
-        );
-
-    color:white;
+    color:#fff;
 
     font-size:20px;
 
     font-weight:800;
 
-    box-shadow:
-
-        0 0 20px rgba(59,130,246,.35);
+    box-shadow:var(--shadow-blue);
 
 }
-
-/* =========================================================== */
-
-/* CONTINUE IN PART 2 */
-/* ===========================================================
-   CONTENT
-=========================================================== */
+/* ==========================================================
+   DETAILS
+========================================================== */
 
 .employee-details{
 
@@ -254,7 +277,7 @@
 
     margin:0;
 
-    color:#F8FAFC;
+    color:var(--text-primary);
 
     font-size:16px;
 
@@ -268,15 +291,15 @@
 
     margin-top:6px;
 
-    color:#94A3B8;
+    color:var(--text-secondary);
 
     font-size:13px;
 
 }
 
-/* ===========================================================
-   RISK SECTION
-=========================================================== */
+/* ==========================================================
+   RISK
+========================================================== */
 
 .risk-section{
 
@@ -300,7 +323,7 @@
 
     gap:6px;
 
-    color:#F8FAFC;
+    color:var(--text-primary);
 
     font-size:18px;
 
@@ -310,21 +333,21 @@
 
 .risk-score svg{
 
-    color:#F59E0B;
+    color:var(--warning);
 
 }
 
-/* ===========================================================
+/* ==========================================================
    BADGES
-=========================================================== */
+========================================================== */
 
 .employee-risk{
 
     display:inline-flex;
 
-    align-items:center;
-
     justify-content:center;
+
+    align-items:center;
 
     min-width:90px;
 
@@ -346,9 +369,9 @@
 
 .employee-risk.critical{
 
-    background:rgba(239,68,68,.14);
+    background:var(--danger-light);
 
-    color:#EF4444;
+    color:var(--danger);
 
     border-color:rgba(239,68,68,.25);
 
@@ -366,9 +389,9 @@
 
 .employee-risk.medium{
 
-    background:rgba(245,158,11,.14);
+    background:var(--warning-light);
 
-    color:#F59E0B;
+    color:var(--warning);
 
     border-color:rgba(245,158,11,.25);
 
@@ -376,25 +399,25 @@
 
 .employee-risk.low{
 
-    background:rgba(34,197,94,.14);
+    background:var(--success-light);
 
-    color:#22C55E;
+    color:var(--success);
 
     border-color:rgba(34,197,94,.25);
 
 }
 
-/* ===========================================================
+/* ==========================================================
    ARROW
-=========================================================== */
+========================================================== */
 
 .employee-arrow{
 
-    color:#60A5FA;
+    color:var(--primary-blue);
 
     font-size:18px;
 
-    transition:.3s;
+    transition:var(--transition-normal);
 
 }
 
@@ -402,13 +425,13 @@
 
     transform:translateX(6px);
 
-    color:#93C5FD;
+    color:var(--primary-blue-light);
 
 }
 
-/* ===========================================================
-   EMPTY STATE
-=========================================================== */
+/* ==========================================================
+   EMPTY
+========================================================== */
 
 .employee-empty{
 
@@ -436,15 +459,9 @@
 
     border-radius:18px;
 
-    background:
+    background:var(--success-light);
 
-        linear-gradient(
-            135deg,
-            rgba(34,197,94,.18),
-            rgba(34,197,94,.08)
-        );
-
-    color:#22C55E;
+    color:var(--success);
 
     margin-bottom:18px;
 
@@ -454,53 +471,15 @@
 
     margin:0;
 
-    color:#94A3B8;
+    color:var(--text-secondary);
 
     font-size:15px;
 
 }
 
-/* ===========================================================
-   HOVER GLOW
-=========================================================== */
-
-.employee-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-        radial-gradient(
-
-        circle at top right,
-
-        rgba(59,130,246,.06),
-
-        transparent 60%
-
-        );
-
-    opacity:0;
-
-    transition:.35s;
-
-    pointer-events:none;
-
-}
-
-.employee-card:hover::after{
-
-    opacity:1;
-
-}
-
-/* ===========================================================
+/* ==========================================================
    RESPONSIVE
-=========================================================== */
+========================================================== */
 
 @media(max-width:768px){
 
@@ -550,9 +529,9 @@ padding:18px;
 
 flex-direction:column;
 
-gap:16px;
-
 align-items:flex-start;
+
+gap:16px;
 
 }
 
