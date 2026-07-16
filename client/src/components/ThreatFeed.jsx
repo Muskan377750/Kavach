@@ -1,109 +1,141 @@
 import {
-  FaExclamationTriangle,
-  FaClock,
-  FaUserShield,
-  FaChevronRight,
-} from "react-icons/fa";
+  FiAlertTriangle,
+  FiClock,
+  FiMapPin,
+  FiChevronRight,
+  FiRadio,
+} from "react-icons/fi";
 
-import "../styles/dashboard.css";
-import useAlerts from "../hooks/useAlerts";
+import "../styles/threatFeed.css";
 
-function ThreatFeed() {
-  const { alerts, loading, error } = useAlerts();
+const severityConfig = {
+  Critical: {
+    className: "critical",
+    label: "Critical",
+  },
+  High: {
+    className: "high",
+    label: "High",
+  },
+  Medium: {
+    className: "medium",
+    label: "Medium",
+  },
+  Low: {
+    className: "low",
+    label: "Low",
+  },
+};
 
-  if (loading) {
-    return (
-      <div className="threat-feed">
-        <h2>🚨 Live Threat Feed</h2>
-        <p>Loading threats...</p>
-      </div>
-    );
+function formatTime(time) {
+  if (!time) return "Just now";
+
+  try {
+    return new Date(time).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return time;
   }
+}
 
-  if (error) {
+function ThreatFeed({ alerts = [] }) {
+  if (!alerts.length) {
     return (
-      <div className="threat-feed">
-        <h2>🚨 Live Threat Feed</h2>
-        <p>{error}</p>
+      <div className="threat-empty">
+        <div className="threat-empty-icon">
+          <FiAlertTriangle />
+        </div>
+
+        <h3>No Active Threats</h3>
+
+        <p>
+          All monitored banking systems are operating
+          normally. No suspicious activity detected.
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="threat-feed">
+    <div className="threat-feed-card">
+      <div className="threat-feed-header">
+        <div>
+          <h2>Live Threat Activity</h2>
 
-      <div className="feed-header">
+          <p>
+            Real-time suspicious events from across the
+            banking network
+          </p>
+        </div>
 
-        <h2>🚨 Live Threat Feed</h2>
-
-        <span className="live-indicator">
-          ● LIVE
-        </span>
-
+        <div className="live-indicator">
+          <FiRadio />
+          LIVE
+        </div>
       </div>
 
-      {alerts.length === 0 ? (
-        <div className="empty-feed">
-          ✅ No threats detected
-        </div>
-      ) : (
-        alerts.slice(0, 6).map((alert) => (
-          <div className="threat-card" key={alert._id}>
+      <div className="threat-feed">
+        {alerts.slice(0, 8).map((alert, index) => {
+          const severity =
+            severityConfig[alert.severity] ||
+            severityConfig.Low;
 
-            <div className="threat-icon-box">
+          return (
+            <div
+              className="threat-item"
+              key={alert.id || alert._id || index}
+            >
+              <div
+                className={`severity-line ${severity.className}`}
+              />
 
-              <FaExclamationTriangle />
+              <div className="threat-content">
+                <div className="threat-top">
+                  <div>
+                    <h4>
+                      {alert.title ||
+                        "Suspicious Banking Activity"}
+                    </h4>
 
+                    <p>
+                      {alert.description ||
+                        "Potential insider threat detected."}
+                    </p>
+                  </div>
+
+                  <span
+                    className={`severity-badge ${severity.className}`}
+                  >
+                    {severity.label}
+                  </span>
+                </div>
+
+                <div className="threat-footer">
+                  <span>
+                    <FiClock />
+                    {formatTime(
+                      alert.createdAt || alert.time
+                    )}
+                  </span>
+
+                  <span>
+                    <FiMapPin />
+                    {alert.location ||
+                      "Head Office"}
+                  </span>
+
+                  <button className="threat-view-btn">
+                    View
+                    <FiChevronRight />
+                  </button>
+                </div>
+              </div>
             </div>
-
-            <div className="threat-content">
-
-              <div className="threat-title">
-
-                <h3>{alert.alertType}</h3>
-
-                <span
-                  className={`risk-badge ${alert.riskLevel.toLowerCase()}`}
-                >
-                  {alert.riskLevel}
-                </span>
-
+          );
+        })}
               </div>
-
-              <div className="employee-info">
-
-                <FaUserShield />
-
-                <span>
-
-                  {alert.user?.name || "Unknown Employee"}
-
-                </span>
-
-              </div>
-
-              <p>{alert.message}</p>
-
-              <div className="threat-footer">
-
-                <span>
-
-                  <FaClock />
-
-                  {new Date(alert.createdAt).toLocaleString()}
-
-                </span>
-
-                <FaChevronRight />
-
-              </div>
-
-            </div>
-
-          </div>
-        ))
-      )}
-
     </div>
   );
 }

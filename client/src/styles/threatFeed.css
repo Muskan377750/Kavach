@@ -1,0 +1,299 @@
+/* ==========================================
+   THREAT FEED
+========================================== */
+
+.threat-feed-card {
+  background: linear-gradient(180deg, #182235 0%, #121b2d 100%);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.threat-feed-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+.threat-feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.threat-feed-header h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.threat-feed-header p {
+  margin-top: 6px;
+  color: #9ca3af;
+  font-size: .9rem;
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(34,197,94,.12);
+  color: #4ade80;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .85rem;
+  animation: pulse 2s infinite;
+}
+
+.live-indicator svg {
+  font-size: 14px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74,222,128,.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(74,222,128,0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(74,222,128,0);
+  }
+}
+
+.threat-feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.threat-item {
+  display: flex;
+  gap: 18px;
+  padding: 22px 26px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  transition: all .25s ease;
+}
+
+.threat-item:last-child {
+  border-bottom: none;
+}
+
+.threat-item:hover {
+  background: rgba(59,130,246,.05);
+}
+
+.severity-line {
+  width: 5px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.severity-line.critical {
+  background: #ef4444;
+}
+
+.severity-line.high {
+  background: #f97316;
+}
+
+.severity-line.medium {
+  background: #f59e0b;
+}
+
+.severity-line.low {
+  background: #22c55e;
+}
+
+.threat-content {
+  flex: 1;
+}
+
+.threat-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.threat-top h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.threat-top p {
+  margin-top: 6px;
+  color: #9ca3af;
+  line-height: 1.5;
+  font-size: .9rem;
+}
+/* ==========================================
+   SEVERITY BADGES
+========================================== */
+
+.severity-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.severity-badge.critical {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+}
+
+.severity-badge.high {
+  background: rgba(249, 115, 22, 0.12);
+  color: #f97316;
+}
+
+.severity-badge.medium {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+}
+
+.severity-badge.low {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.threat-footer {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.threat-footer span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.threat-footer svg {
+  color: #60a5fa;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.threat-view-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.threat-view-btn:hover {
+  transform: translateY(-2px);
+  background: #3b82f6;
+}
+
+.threat-view-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.threat-view-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.threat-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 420px;
+  text-align: center;
+  padding: 32px;
+  background: linear-gradient(180deg, #182235 0%, #121b2d 100%);
+  border-radius: 22px;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.threat-empty-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+
+.threat-empty h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.threat-empty p {
+  margin-top: 12px;
+  color: #9ca3af;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+  .threat-feed-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .threat-top {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .threat-footer {
+    gap: 14px;
+  }
+
+  .threat-view-btn {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .threat-item {
+    padding: 18px;
+  }
+}

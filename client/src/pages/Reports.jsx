@@ -10,143 +10,182 @@ import useReports from "../hooks/useReports";
 import "../styles/dashboard.css";
 import "../styles/reports.css";
 
+
 function Reports() {
 
-  const { reports, loading, error } = useReports();
 
-  if (loading) {
-    return (
-      <div className="dashboard">
-        <Sidebar />
+  const {
+    reports = {},
+    loading,
+    error
+  } = useReports();
 
-        <div className="dashboard-content">
 
-          <Navbar />
-
-          <div className="users-loading">
-
-            <div className="loader"></div>
-
-            <h2>Loading Reports...</h2>
-
-          </div>
-
-        </div>
-
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="dashboard">
-        <Sidebar />
-
-        <div className="dashboard-content">
-
-          <Navbar />
-
-          <div className="users-error">
-
-            <h2>{error}</h2>
-
-          </div>
-
-        </div>
-
-      </div>
-    );
-  }
 
   return (
 
-    <div className="dashboard">
+    <div className="dashboard-layout">
+
 
       <Sidebar />
 
-      <div className="dashboard-content">
+
+      <div className="dashboard-main">
+
 
         <Navbar />
 
-        <div className="reports-page">
 
-          <div className="reports-header">
+        <div className="dashboard-content">
 
-            <div>
 
-              <h1>📊 Security Reports</h1>
+          <div className="reports-page">
 
-              <p>
 
-                Live security analytics from your banking
-                monitoring system.
+            <div className="reports-header">
 
-              </p>
+              <div>
+
+                <h1>
+                  📊 Security Analytics Center
+                </h1>
+
+
+                <p>
+                  Enterprise security performance and threat intelligence reports
+                </p>
+
+              </div>
 
             </div>
 
+
+
+            {
+              loading && (
+
+                <div className="page-loading">
+
+                  Loading Reports...
+
+                </div>
+
+              )
+            }
+
+
+
+            {
+              error && (
+
+                <div className="page-error">
+
+                  {error}
+
+                </div>
+
+              )
+            }
+
+
+
+
+            {
+              !loading && !error && (
+
+                <>
+
+
+                  <div className="reports-grid">
+
+
+                    <ReportCard
+                      title="Employees"
+                      value={reports.totalEmployees || 0}
+                      icon="👥"
+                      color="#2563EB"
+                    />
+
+
+                    <ReportCard
+                      title="Total Alerts"
+                      value={reports.totalAlerts || 0}
+                      icon="🚨"
+                      color="#DC2626"
+                    />
+
+
+                    <ReportCard
+                      title="Critical Alerts"
+                      value={reports.criticalAlerts || 0}
+                      icon="⚠️"
+                      color="#EA580C"
+                    />
+
+
+                    <ReportCard
+                      title="Resolved Alerts"
+                      value={reports.resolvedAlerts || 0}
+                      icon="✅"
+                      color="#16A34A"
+                    />
+
+
+                    <ReportCard
+                      title="Open Alerts"
+                      value={reports.openAlerts || 0}
+                      icon="📂"
+                      color="#7C3AED"
+                    />
+
+
+                    <ReportCard
+                      title="Audit Logs"
+                      value={reports.auditLogs || 0}
+                      icon="📜"
+                      color="#0F766E"
+                    />
+
+
+                  </div>
+
+
+
+                  <div className="dashboard-panel">
+
+                    <ReportsChart
+                      data={reports.departmentData || []}
+                    />
+
+                  </div>
+
+
+
+
+                  <ExportButtons />
+
+
+                </>
+
+              )
+            }
+
+
+
           </div>
 
-          <div className="reports-grid">
-
-            <ReportCard
-              title="Employees"
-              value={reports.totalEmployees}
-              icon="👨"
-              color="#2563EB"
-            />
-
-            <ReportCard
-              title="Total Alerts"
-              value={reports.totalAlerts}
-              icon="🚨"
-              color="#DC2626"
-            />
-
-            <ReportCard
-              title="Critical Alerts"
-              value={reports.criticalAlerts}
-              icon="⚠️"
-              color="#EA580C"
-            />
-
-            <ReportCard
-              title="Resolved Alerts"
-              value={reports.resolvedAlerts}
-              icon="✅"
-              color="#16A34A"
-            />
-
-            <ReportCard
-              title="Open Alerts"
-              value={reports.openAlerts}
-              icon="📂"
-              color="#7C3AED"
-            />
-
-            <ReportCard
-              title="Audit Logs"
-              value={reports.auditLogs}
-              icon="📜"
-              color="#0F766E"
-            />
-
-          </div>
-
-          <ReportsChart
-            data={reports.departmentData}
-          />
-
-          <ExportButtons />
 
         </div>
 
+
       </div>
+
 
     </div>
 
   );
 
 }
+
 
 export default Reports;

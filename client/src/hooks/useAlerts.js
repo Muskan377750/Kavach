@@ -1,37 +1,80 @@
-import { useEffect, useState, useCallback } from "react";
-import { getAlerts } from "../services/alertService";
+import { 
+useEffect,
+useState,
+useCallback
+} from "react";
 
-function useAlerts() {
-  const [alerts, setAlerts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+import {
+getAlerts
+} from "../api/alertApi";
 
-  const fetchAlerts = useCallback(async () => {
-    try {
-      setLoading(true);
 
-      const data = await getAlerts();
+function useAlerts(){
 
-      setAlerts(data);
-      setError("");
-    } catch (err) {
-      console.error(err);
-      setError("Unable to load alerts");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+const [alerts,setAlerts]=useState([]);
 
-  useEffect(() => {
-    fetchAlerts();
-  }, [fetchAlerts]);
+const [loading,setLoading]=useState(true);
 
-  return {
-    alerts,
-    loading,
-    error,
-    fetchAlerts,
-  };
+const [error,setError]=useState("");
+
+
+
+const fetchAlerts=useCallback(async()=>{
+
+try{
+
+setLoading(true);
+
+
+const data=await getAlerts();
+
+
+setAlerts(data);
+
+setError("");
+
 }
+
+catch(err){
+
+console.log(err);
+
+setError(
+"Unable to load alerts"
+);
+
+}
+
+finally{
+
+setLoading(false);
+
+}
+
+
+},[]);
+
+
+
+useEffect(()=>{
+
+fetchAlerts();
+
+},[fetchAlerts]);
+
+
+
+return {
+
+alerts,
+loading,
+error,
+fetchAlerts
+
+};
+
+
+}
+
 
 export default useAlerts;

@@ -1,0 +1,581 @@
+/* ===========================================================
+   KAVACH SOC
+   EMPLOYEE RISK MONITOR
+===========================================================*/
+
+.employee-monitor{
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #0F172A
+        );
+
+    border:1px solid rgba(59,130,246,.15);
+
+    border-radius:22px;
+
+    padding:24px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.35);
+
+}
+
+.employee-monitor::before{
+
+    content:"";
+
+    position:absolute;
+
+    right:-120px;
+
+    top:-120px;
+
+    width:240px;
+
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+
+    rgba(59,130,246,.15),
+
+    transparent 70%
+
+    );
+
+}
+
+/* =========================================================== */
+
+.employee-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:24px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.employee-header h2{
+
+    margin:0;
+
+    color:#F8FAFC;
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+.employee-header p{
+
+    margin-top:8px;
+
+    color:#94A3B8;
+
+    font-size:13px;
+
+}
+
+/* =========================================================== */
+
+.employee-count{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:rgba(59,130,246,.12);
+
+    border:1px solid rgba(59,130,246,.15);
+
+    color:#60A5FA;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+/* =========================================================== */
+
+.employee-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+/* =========================================================== */
+
+.employee-card{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.04),
+            rgba(255,255,255,.02)
+        );
+
+    border:1px solid rgba(255,255,255,.06);
+
+    transition:.3s;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+}
+
+.employee-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:4px;
+
+    height:100%;
+
+    background:#F59E0B;
+
+}
+
+.employee-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#2563EB;
+
+    box-shadow:
+
+        0 18px 35px rgba(0,0,0,.30);
+
+}
+
+/* =========================================================== */
+
+.employee-avatar{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-shrink:0;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #3B82F6,
+            #2563EB
+        );
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    box-shadow:
+
+        0 0 20px rgba(59,130,246,.35);
+
+}
+
+/* =========================================================== */
+
+/* CONTINUE IN PART 2 */
+/* ===========================================================
+   CONTENT
+=========================================================== */
+
+.employee-details{
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+.employee-details h3{
+
+    margin:0;
+
+    color:#F8FAFC;
+
+    font-size:16px;
+
+    font-weight:700;
+
+}
+
+.employee-details span{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#94A3B8;
+
+    font-size:13px;
+
+}
+
+/* ===========================================================
+   RISK SECTION
+=========================================================== */
+
+.risk-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:10px;
+
+    min-width:110px;
+
+}
+
+.risk-score{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#F8FAFC;
+
+    font-size:18px;
+
+    font-weight:800;
+
+}
+
+.risk-score svg{
+
+    color:#F59E0B;
+
+}
+
+/* ===========================================================
+   BADGES
+=========================================================== */
+
+.employee-risk{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:90px;
+
+    padding:7px 14px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    text-transform:uppercase;
+
+    border:1px solid transparent;
+
+}
+
+.employee-risk.critical{
+
+    background:rgba(239,68,68,.14);
+
+    color:#EF4444;
+
+    border-color:rgba(239,68,68,.25);
+
+}
+
+.employee-risk.high{
+
+    background:rgba(249,115,22,.14);
+
+    color:#F97316;
+
+    border-color:rgba(249,115,22,.25);
+
+}
+
+.employee-risk.medium{
+
+    background:rgba(245,158,11,.14);
+
+    color:#F59E0B;
+
+    border-color:rgba(245,158,11,.25);
+
+}
+
+.employee-risk.low{
+
+    background:rgba(34,197,94,.14);
+
+    color:#22C55E;
+
+    border-color:rgba(34,197,94,.25);
+
+}
+
+/* ===========================================================
+   ARROW
+=========================================================== */
+
+.employee-arrow{
+
+    color:#60A5FA;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.employee-card:hover .employee-arrow{
+
+    transform:translateX(6px);
+
+    color:#93C5FD;
+
+}
+
+/* ===========================================================
+   EMPTY STATE
+=========================================================== */
+
+.employee-empty{
+
+    height:220px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+.employee-empty svg{
+
+    width:70px;
+
+    height:70px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(34,197,94,.18),
+            rgba(34,197,94,.08)
+        );
+
+    color:#22C55E;
+
+    margin-bottom:18px;
+
+}
+
+.employee-empty p{
+
+    margin:0;
+
+    color:#94A3B8;
+
+    font-size:15px;
+
+}
+
+/* ===========================================================
+   HOVER GLOW
+=========================================================== */
+
+.employee-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+
+        circle at top right,
+
+        rgba(59,130,246,.06),
+
+        transparent 60%
+
+        );
+
+    opacity:0;
+
+    transition:.35s;
+
+    pointer-events:none;
+
+}
+
+.employee-card:hover::after{
+
+    opacity:1;
+
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+@media(max-width:768px){
+
+.employee-card{
+
+flex-wrap:wrap;
+
+gap:16px;
+
+}
+
+.employee-details{
+
+width:100%;
+
+}
+
+.risk-section{
+
+width:100%;
+
+flex-direction:row;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.employee-arrow{
+
+display:none;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.employee-monitor{
+
+padding:18px;
+
+}
+
+.employee-header{
+
+flex-direction:column;
+
+gap:16px;
+
+align-items:flex-start;
+
+}
+
+.employee-avatar{
+
+width:50px;
+
+height:50px;
+
+font-size:18px;
+
+}
+
+.employee-details h3{
+
+font-size:15px;
+
+}
+
+.risk-score{
+
+font-size:16px;
+
+}
+
+}

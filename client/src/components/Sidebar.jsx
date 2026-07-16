@@ -1,141 +1,204 @@
+import { NavLink } from "react-router-dom";
 import {
-  FaShieldAlt,
-  FaHome,
-  FaBell,
-  FaClipboardList,
-  FaUsers,
-  FaChartBar,
-  FaCog,
-  FaSignOutAlt,
-  FaUserShield,
-} from "react-icons/fa";
+  FiGrid,
+  FiUsers,
+  FiAlertTriangle,
+  FiFileText,
+  FiBarChart2,
+  FiSettings,
+  FiShield,
+  FiActivity,
+  FiChevronRight,
+  FiMenu,
+  FiChevronLeft
+} from "react-icons/fi";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { useSidebar } from "../context/SidebarContext";
 
 import "../styles/sidebar.css";
 
 function Sidebar() {
-  const navigate = useNavigate();
+  const { collapsed, toggleSidebar } = useSidebar();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
+  const menu = [
+    {
+      name: "Dashboard",
+      path: "/dashboard",
+      icon: <FiGrid />,
+    },
+    {
+      name: "Employees",
+      path: "/users",
+      icon: <FiUsers />,
+    },
+    {
+      name: "Alerts",
+      path: "/alerts",
+      icon: <FiAlertTriangle />,
+    },
+    {
+      name: "Audit Logs",
+      path: "/audit",
+      icon: <FiFileText />,
+    },
+    {
+      name: "Reports",
+      path: "/reports",
+      icon: <FiBarChart2 />,
+    },
+    {
+      name: "Settings",
+      path: "/settings",
+      icon: <FiSettings />,
+    },
+  ];
 
   return (
-    <aside className="sidebar">
-      {/* ===========================
-          LOGO
-      =========================== */}
+    <aside
+      className={`sidebar ${
+        collapsed ? "collapsed" : ""
+      }`}
+    >
+      <div className="sidebar-glow"></div>
+
+      {/* Collapse Button */}
+
+      {/* Collapse Button */}
+
+<button
+  className="sidebar-toggle"
+  onClick={toggleSidebar}
+  title={
+    collapsed
+      ? "Expand Sidebar"
+      : "Collapse Sidebar"
+  }
+  aria-label={
+    collapsed
+      ? "Expand Sidebar"
+      : "Collapse Sidebar"
+  }
+>
+
+  {collapsed ? <FiMenu /> : <FiChevronLeft />}
+
+</button>
+
+      {/* Logo */}
 
       <div className="sidebar-logo">
-        <FaShieldAlt />
 
-        <div>
-          <h2>SecureVault</h2>
-          <span>Enterprise SOC</span>
-        </div>
-      </div>
-
-      {/* ===========================
-          MENU
-      =========================== */}
-
-      <ul>
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) =>
-            isActive ? "nav-link active" : "nav-link"
-          }
-        >
-          <li>
-            <FaHome />
-            <span>Dashboard</span>
-          </li>
-        </NavLink>
-
-        <NavLink
-          to="/alerts"
-          className={({ isActive }) =>
-            isActive ? "nav-link active" : "nav-link"
-          }
-        >
-          <li>
-            <FaBell />
-            <span>Alerts</span>
-          </li>
-        </NavLink>
-
-        <NavLink
-          to="/audit"
-          className={({ isActive }) =>
-            isActive ? "nav-link active" : "nav-link"
-          }
-        >
-          <li>
-            <FaClipboardList />
-            <span>Audit Logs</span>
-          </li>
-        </NavLink>
-
-        <NavLink
-          to="/users"
-          className={({ isActive }) =>
-            isActive ? "nav-link active" : "nav-link"
-          }
-        >
-          <li>
-            <FaUsers />
-            <span>Employees</span>
-          </li>
-        </NavLink>
-
-        <NavLink
-          to="/reports"
-          className={({ isActive }) =>
-            isActive ? "nav-link active" : "nav-link"
-          }
-        >
-          <li>
-            <FaChartBar />
-            <span>Reports</span>
-          </li>
-        </NavLink>
-
-        <NavLink
-          to="/settings"
-          className={({ isActive }) =>
-            isActive ? "nav-link active" : "nav-link"
-          }
-        >
-          <li>
-            <FaCog />
-            <span>Settings</span>
-          </li>
-        </NavLink>
-      </ul>
-
-      {/* ===========================
-          BOTTOM SECTION
-      =========================== */}
-
-      <div className="sidebar-bottom">
-        <div className="sidebar-user">
-          <div className="user-avatar">
-            <FaUserShield />
-          </div>
-
-          <div className="user-details">
-            <h4>Administrator</h4>
-            <span>Security Team</span>
-          </div>
+        <div className="logo-icon">
+          <FiShield />
         </div>
 
-        <button className="logout-btn" onClick={handleLogout}>
-          <FaSignOutAlt />
-          Logout
-        </button>
+        {!collapsed && (
+
+          <div className="logo-text">
+
+            <h2 className="logo-title">
+              KAVACH
+            </h2>
+
+            <p className="logo-subtitle">
+              Banking Security Operations Center
+            </p>
+
+          </div>
+
+        )}
+
       </div>
+
+      {!collapsed && (
+        <div className="menu-section">
+          Main Navigation
+        </div>
+      )}
+
+      <nav
+        className="sidebar-nav"
+        aria-label="Primary Navigation"
+      >
+
+        {menu.map((item) => (
+
+          <NavLink
+            key={item.name}
+            to={item.path}
+            className={({ isActive }) =>
+              isActive
+                ? "sidebar-link active"
+                : "sidebar-link"
+            }
+          >
+
+            <span className="active-bar"></span>
+
+            <div className="sidebar-icon">
+              {item.icon}
+            </div>
+
+            {!collapsed && (
+
+              <>
+                <span className="sidebar-label">
+                  {item.name}
+                </span>
+
+                <FiChevronRight className="menu-arrow" />
+              </>
+
+            )}
+
+          </NavLink>
+
+        ))}
+
+      </nav>
+
+      {!collapsed && (
+
+        <div className="sidebar-footer">
+
+          <div className="status-card">
+
+            <div className="status-header">
+
+              <FiActivity />
+
+              <span>
+                System Status
+              </span>
+
+            </div>
+
+            <div className="status-online">
+
+              <span className="status-dot"></span>
+
+              <span>
+                All Services Operational
+              </span>
+
+            </div>
+
+          </div>
+
+          <div className="sidebar-version">
+
+            KAVACH SOC
+
+            <br />
+
+            Version 2.0
+
+          </div>
+
+        </div>
+
+      )}
+
     </aside>
   );
 }

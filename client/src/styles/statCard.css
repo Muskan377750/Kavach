@@ -1,0 +1,331 @@
+/* ===============================
+   Enterprise SOC Stat Cards
+================================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 180px;
+
+  padding: 24px;
+
+  border-radius: 22px;
+
+  background: linear-gradient(
+      145deg,
+      rgba(22, 28, 45, 0.98),
+      rgba(16, 21, 36, 0.95)
+  );
+
+  border: 1px solid rgba(255,255,255,.06);
+
+  box-shadow:
+      0 10px 35px rgba(0,0,0,.35),
+      inset 0 1px rgba(255,255,255,.03);
+
+  transition: .35s ease;
+}
+
+.stat-card:hover{
+
+    transform: translateY(-8px);
+
+    border-color: rgba(59,130,246,.45);
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.45),
+        0 0 35px rgba(59,130,246,.18);
+}
+
+/* Glow */
+
+.stat-card-glow{
+
+    position:absolute;
+
+    width:240px;
+    height:240px;
+
+    right:-110px;
+    top:-110px;
+
+    background: radial-gradient(
+        rgba(59,130,246,.18),
+        transparent 70%
+    );
+
+    pointer-events:none;
+}
+
+/* ---------- Top ---------- */
+
+.stat-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+}
+
+.stat-icon{
+
+    width:62px;
+    height:62px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+    box-shadow:
+        inset 0 0 10px rgba(255,255,255,.08),
+        0 10px 25px rgba(0,0,0,.25);
+
+    transition:.3s;
+}
+
+.stat-card:hover .stat-icon{
+
+    transform:rotate(-8deg) scale(1.08);
+}
+
+/* ---------- Ring ---------- */
+
+.stat-ring{
+
+    position:relative;
+
+    width:70px;
+    height:70px;
+}
+
+.progress-ring{
+
+    transform:rotate(-90deg);
+}
+
+.ring-bg{
+
+    opacity:.18;
+}
+
+.ring-progress{
+
+    transition:stroke-dashoffset 1s ease;
+}
+
+.stat-ring span{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#cbd5e1;
+}
+
+/* ---------- Content ---------- */
+
+.stat-content{
+
+    margin-top:18px;
+}
+
+.stat-title{
+
+    color:#94a3b8;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+}
+
+.stat-value{
+
+    color:#fff;
+
+    font-size:2.2rem;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+    letter-spacing:-1px;
+}
+
+/* ---------- Bottom ---------- */
+
+.stat-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.trend-pill{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:rgba(59,130,246,.12);
+
+    color:#60a5fa;
+
+    font-size:.78rem;
+
+    font-weight:600;
+
+    border:1px solid rgba(59,130,246,.25);
+}
+
+.trend-pill svg{
+
+    font-size:.9rem;
+}
+
+.pulse-dot{
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    animation:pulse 1.5s infinite;
+}
+
+/* ---------- Pulse ---------- */
+
+@keyframes pulse{
+
+0%{
+
+box-shadow:0 0 0 0 currentColor;
+}
+
+70%{
+
+box-shadow:0 0 0 10px transparent;
+}
+
+100%{
+
+box-shadow:0 0 0 0 transparent;
+}
+
+}
+
+/* ---------- Shine ---------- */
+
+.stat-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-120%;
+
+width:60%;
+
+height:100%;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.08),
+transparent
+);
+
+transition:.8s;
+}
+
+.stat-card:hover::before{
+
+left:140%;
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:992px){
+
+.stats-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:650px){
+
+.stats-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.stat-card{
+
+padding:20px;
+
+}
+
+.stat-value{
+
+font-size:1.9rem;
+
+}
+
+.stat-icon{
+
+width:55px;
+height:55px;
+
+font-size:24px;
+
+}
+
+}

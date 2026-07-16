@@ -1,86 +1,164 @@
 import {
+  ResponsiveContainer,
   PieChart,
   Pie,
   Cell,
   Tooltip,
-  ResponsiveContainer
+  Legend,
 } from "recharts";
 
-const data = [
+import {
+  FiShield,
+} from "react-icons/fi";
 
-{ name:"Low", value:35 },
+import "../styles/charts.css";
 
-{ name:"Medium", value:30 },
+function RiskDistributionChart() {
 
-{ name:"High", value:20 },
+  const data = [
+    {
+      name: "Low Risk",
+      value: 62,
+      color: "#22C55E",
+    },
+    {
+      name: "Medium Risk",
+      value: 24,
+      color: "#F59E0B",
+    },
+    {
+      name: "High Risk",
+      value: 10,
+      color: "#EF4444",
+    },
+    {
+      name: "Critical",
+      value: 4,
+      color: "#7C3AED",
+    },
+  ];
 
-{ name:"Critical", value:15 }
+  return (
 
-];
+    <div className="chart-card">
 
-const COLORS = [
+      {/* ===========================
+          HEADER
+      =========================== */}
 
-"#22C55E",
+      <div className="chart-top">
 
-"#FACC15",
+        <div>
 
-"#F97316",
+          <h3>
 
-"#EF4444"
+            <FiShield />
 
-];
+            Risk Distribution
 
-function RiskDistributionChart(){
+          </h3>
 
-return(
+          <p>
 
-<div className="chart-card">
+            Current employee risk classification
 
-<h2>🥧 Risk Distribution</h2>
+          </p>
 
-<ResponsiveContainer width="100%" height={300}>
+        </div>
 
-<PieChart>
+        <div className="chart-status">
 
-<Pie
+          ACTIVE
 
-data={data}
+        </div>
 
-dataKey="value"
+      </div>
 
-outerRadius={110}
+      {/* ===========================
+          CHART
+      =========================== */}
 
-label
+      <ResponsiveContainer
+        width="100%"
+        height={300}
+      >
 
->
+        <PieChart>
 
-{
+          <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            innerRadius={70}
+            outerRadius={105}
+            paddingAngle={3}
+            animationDuration={1200}
+          >
 
-data.map((entry,index)=>(
+            {data.map((entry, index) => (
 
-<Cell
+              <Cell
+                key={index}
+                fill={entry.color}
+              />
 
-key={index}
+            ))}
 
-fill={COLORS[index]}
+          </Pie>
 
-/>
+          <Tooltip
+            contentStyle={{
+              background: "#111827",
+              border: "1px solid rgba(255,255,255,.08)",
+              borderRadius: "14px",
+              color: "#fff",
+            }}
+          />
 
-))
+          <Legend
+            verticalAlign="bottom"
+            iconType="circle"
+          />
 
-}
+        </PieChart>
 
-</Pie>
+      </ResponsiveContainer>
 
-<Tooltip/>
+      {/* ===========================
+          FOOTER
+      =========================== */}
 
-</PieChart>
+      <div className="chart-footer">
 
-</ResponsiveContainer>
+        <div>
 
-</div>
+          <strong>100%</strong>
 
-);
+          <span>Total Employees</span>
+
+        </div>
+
+        <div>
+
+          <strong>4%</strong>
+
+          <span>Critical Risk</span>
+
+        </div>
+
+        <div>
+
+          <strong>62%</strong>
+
+          <span>Low Risk</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  );
 
 }
 

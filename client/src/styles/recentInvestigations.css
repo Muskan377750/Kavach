@@ -1,0 +1,595 @@
+/* ===========================================================
+   KAVACH SOC
+   RECENT INVESTIGATIONS
+=========================================================== */
+
+.investigation-panel{
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #0F172A
+        );
+
+    border:1px solid rgba(59,130,246,.15);
+
+    border-radius:22px;
+
+    padding:24px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.35);
+
+}
+
+.investigation-panel::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120px;
+
+    right:-120px;
+
+    width:250px;
+
+    height:250px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            rgba(59,130,246,.16),
+            transparent 70%
+        );
+
+}
+
+/* =========================================================== */
+
+.investigation-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:24px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.investigation-header h2{
+
+    margin:0;
+
+    color:#F8FAFC;
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+.investigation-header p{
+
+    margin-top:8px;
+
+    color:#94A3B8;
+
+    font-size:13px;
+
+    max-width:500px;
+
+}
+
+.header-icon{
+
+    width:52px;
+
+    height:52px;
+
+    padding:14px;
+
+    border-radius:16px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #3B82F6,
+            #2563EB
+        );
+
+    color:white;
+
+    box-shadow:
+
+        0 0 20px rgba(59,130,246,.30);
+
+}
+
+/* =========================================================== */
+
+.investigation-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+/* =========================================================== */
+
+.investigation-card{
+
+    position:relative;
+
+    display:flex;
+
+    gap:18px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.04),
+            rgba(255,255,255,.02)
+        );
+
+    border:1px solid rgba(255,255,255,.06);
+
+    transition:.3s;
+
+    overflow:hidden;
+
+}
+
+.investigation-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:4px;
+
+    height:100%;
+
+    background:#3B82F6;
+
+}
+
+.investigation-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#2563EB;
+
+    box-shadow:
+
+        0 18px 35px rgba(0,0,0,.30);
+
+}
+
+/* =========================================================== */
+
+.case-icon{
+
+    width:56px;
+
+    height:56px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:16px;
+
+    background:rgba(59,130,246,.14);
+
+    color:#60A5FA;
+
+    font-size:22px;
+
+}
+
+/* =========================================================== */
+
+/* CONTINUE IN PART 2 */
+/* ===========================================================
+   CASE CONTENT
+=========================================================== */
+
+.case-content{
+
+    flex:1;
+
+    min-width:0;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* =========================================================== */
+
+.case-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:16px;
+
+    margin-bottom:14px;
+
+}
+
+.case-top h3{
+
+    margin:0;
+
+    color:#F8FAFC;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    line-height:1.4;
+
+}
+
+/* ===========================================================
+   STATUS BADGES
+=========================================================== */
+
+.case-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:92px;
+
+    padding:7px 14px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
+
+    border:1px solid transparent;
+
+}
+
+.case-status.pending{
+
+    background:rgba(245,158,11,.14);
+
+    color:#F59E0B;
+
+    border-color:rgba(245,158,11,.25);
+
+}
+
+.case-status.active{
+
+    background:rgba(59,130,246,.14);
+
+    color:#60A5FA;
+
+    border-color:rgba(59,130,246,.25);
+
+}
+
+.case-status.completed{
+
+    background:rgba(34,197,94,.14);
+
+    color:#22C55E;
+
+    border-color:rgba(34,197,94,.25);
+
+}
+
+.case-status.closed{
+
+    background:rgba(107,114,128,.18);
+
+    color:#CBD5E1;
+
+    border-color:rgba(107,114,128,.30);
+
+}
+
+/* ===========================================================
+   CASE INFO
+=========================================================== */
+
+.case-info{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-bottom:16px;
+
+}
+
+.case-info span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#94A3B8;
+
+    font-size:13px;
+
+}
+
+.case-info svg{
+
+    color:#60A5FA;
+
+}
+
+/* ===========================================================
+   FOOTER
+=========================================================== */
+
+.case-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding-top:14px;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+    color:#94A3B8;
+
+    font-size:12px;
+
+}
+
+.case-footer svg{
+
+    color:#60A5FA;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.investigation-card:hover .case-footer svg{
+
+    transform:translateX(6px);
+
+}
+
+/* ===========================================================
+   HOVER GLOW
+=========================================================== */
+
+.investigation-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+
+        circle at top right,
+
+        rgba(59,130,246,.08),
+
+        transparent 60%
+
+        );
+
+    opacity:0;
+
+    transition:.35s;
+
+    pointer-events:none;
+
+}
+
+.investigation-card:hover::after{
+
+    opacity:1;
+
+}
+
+/* ===========================================================
+   EMPTY STATE
+=========================================================== */
+
+.investigation-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:60px 20px;
+
+}
+
+.investigation-empty svg{
+
+    width:72px;
+
+    height:72px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(59,130,246,.18),
+            rgba(59,130,246,.08)
+        );
+
+    color:#60A5FA;
+
+    margin-bottom:18px;
+
+}
+
+.investigation-empty h3{
+
+    margin:0;
+
+    color:#F8FAFC;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.investigation-empty p{
+
+    margin-top:10px;
+
+    color:#94A3B8;
+
+    max-width:320px;
+
+    line-height:1.6;
+
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+@media(max-width:768px){
+
+.investigation-header{
+
+flex-direction:column;
+
+gap:18px;
+
+align-items:flex-start;
+
+}
+
+.case-top{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.case-info{
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.investigation-card{
+
+padding:18px;
+
+gap:14px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.investigation-panel{
+
+padding:18px;
+
+}
+
+.investigation-card{
+
+flex-direction:column;
+
+}
+
+.case-icon{
+
+width:50px;
+
+height:50px;
+
+font-size:20px;
+
+}
+
+.case-footer{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:12px;
+
+}
+
+}

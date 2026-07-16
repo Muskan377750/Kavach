@@ -1,86 +1,158 @@
 import {
-  FaUserCircle,
-  FaSearch,
-  FaShieldAlt,
-} from "react-icons/fa";
-
-import NotificationBell from "./NotificationBell";
-
+  FiSearch,
+  FiBell,
+  FiMoon,
+  FiSun,
+  FiShield,
+  FiChevronDown,
+} from "react-icons/fi";
+import { useEffect, useRef } from "react";
+import { useSearch } from "../context/SearchContext";
+import { useNotifications } from "../context/NotificationContext";
+import { useTheme } from "../context/ThemeContext";
+import NotificationDropdown from "./NotificationDropdown";
 import "../styles/navbar.css";
 
 function Navbar() {
-  const today = new Date();
+  const { search, setSearch } = useSearch();
+  const { theme, setTheme } = useTheme();
 
-  const currentDate = today.toLocaleDateString("en-IN", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const {
+    unreadCount,
+    open,
+    setOpen,
+  } = useNotifications();
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () =>
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+  }, [setOpen]);
 
   return (
     <header className="navbar">
 
       {/* Left */}
 
-      <div className="nav-left">
+      <div className="navbar-logo">
 
-        <div className="nav-title">
+        <div className="logo-icon">
+          <FiShield />
+        </div>
 
-          <FaShieldAlt className="shield-icon" />
-
-          <div>
-
-            <h2>SecureVault Enterprise</h2>
-
-            <p>AI Powered Insider Threat Detection</p>
-
+        <div>
+          <div className="logo-title">KAVACH</div>
+          <div className="logo-subtitle">
+            Banking SOC
           </div>
-
         </div>
 
       </div>
 
-      {/* Center */}
+      {/* Search */}
 
-      <div className="nav-center">
+      <div className="navbar-search">
 
-        <div className="search-box">
+        <FiSearch className="search-icon" />
 
-          <FaSearch />
-
-          <input
-            type="text"
-            placeholder="Search employees, alerts, audit logs..."
-          />
-
-        </div>
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search alerts, employees, investigations..."
+        />
 
       </div>
 
       {/* Right */}
 
-      <div className="nav-right">
+      <div className="navbar-right">
 
-        <div className="date-card">
+        <div className="live-status">
 
-          <span>{currentDate}</span>
+          <span className="live-dot"></span>
+
+          All Systems Secure
 
         </div>
 
-        <NotificationBell />
+        <div
+          ref={dropdownRef}
+          style={{ position: "relative" }}
+        >
 
-        <div className="profile-card">
+          <button
+            className={`notification ${
+              unreadCount ? "has-unread" : ""
+            }`}
+            onClick={() => setOpen(!open)}
+          >
+            <FiBell />
 
-          <FaUserCircle className="profile-icon" />
+            {unreadCount > 0 && (
+              <span className="notification-count">
+                {unreadCount}
+              </span>
+            )}
 
-          <div>
+          </button>
 
-            <h4>Administrator</h4>
+          {open && <NotificationDropdown />}
 
-            <small>Security Team</small>
+        </div>
+
+        <button
+          className="notification"
+          onClick={() =>
+            setTheme(
+              theme === "dark"
+                ? "light"
+                : "dark"
+            )
+          }
+        >
+
+          {theme === "dark" ? (
+            <FiSun />
+          ) : (
+            <FiMoon />
+          )}
+
+        </button>
+
+        <div className="profile">
+
+          <div className="profile-avatar">
+            A
+          </div>
+
+          <div className="profile-info">
+
+            <div className="profile-name">
+              Admin
+            </div>
+
+            <div className="profile-role">
+              SOC Administrator
+            </div>
 
           </div>
+
+          <FiChevronDown className="profile-arrow"/>
 
         </div>
 

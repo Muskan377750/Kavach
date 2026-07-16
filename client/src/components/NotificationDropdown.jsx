@@ -1,65 +1,91 @@
-function NotificationDropdown({ notifications }) {
+import {
+  FiAlertTriangle,
+  FiCheckCircle,
+  FiXCircle,
+} from "react-icons/fi";
+
+import {
+  useNotifications,
+} from "../context/NotificationContext";
+
+import "../styles/notification.css";
+
+function NotificationDropdown() {
+
+  const {
+    notifications,
+    markAllAsRead,
+  } = useNotifications();
+
+  const getIcon = (severity) => {
+    switch (severity) {
+      case "critical":
+        return <FiXCircle color="#EF4444" />;
+      case "warning":
+        return <FiAlertTriangle color="#F59E0B" />;
+      case "success":
+        return <FiCheckCircle color="#22C55E" />;
+      default:
+        return <FiAlertTriangle color="#3B82F6" />;
+    }
+  };
 
   return (
 
     <div className="notification-dropdown">
 
-      <h3>Latest Alerts</h3>
+      <div className="notification-header">
 
-      {
+        <h3>Notifications</h3>
 
-        notifications.length===0?
+        <button onClick={markAllAsRead}>
+          Mark all read
+        </button>
 
-        (
+      </div>
 
-          <p className="empty-notification">
+      <div className="notification-list">
 
-            No alerts
+        {notifications.length === 0 ? (
 
-          </p>
+          <div className="notification-empty">
+            No notifications
+          </div>
 
-        )
+        ) : (
 
-        :
+          notifications.map((item) => (
 
-        notifications.slice(0,6).map((alert)=>(
+            <div
+              key={item.id}
+              className={`notification-item ${
+                !item.read ? "unread" : ""
+              }`}
+            >
 
-          <div
-            key={alert._id}
-            className="notification-item"
-          >
+              <div className="notification-icon">
 
-            <div>
+                {getIcon(item.severity)}
 
-              <strong>
+              </div>
 
-                {alert.riskLevel}
+              <div className="notification-content">
 
-              </strong>
+                <strong>{item.title}</strong>
 
-              <p>
+                <p>{item.message}</p>
 
-                {alert.alertType}
+                <small>{item.time}</small>
 
-              </p>
+              </div>
 
             </div>
 
-            <small>
+          ))
 
-              {
-                new Date(
-                  alert.createdAt
-                ).toLocaleString()
-              }
+        )}
 
-            </small>
-
-          </div>
-
-        ))
-
-      }
+      </div>
 
     </div>
 

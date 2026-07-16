@@ -1,276 +1,735 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* ==========================================
+   KAVACH LOGIN PAGE
+========================================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+
+.login-page{
+
+
+min-height:100vh;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:space-between;
+
+
+padding:70px;
+
+
+background:
+
+
+linear-gradient(
+135deg,
+#07121F,
+#0B2A55,
+#2563EB
+);
+
+
+overflow:hidden;
+
+
+position:relative;
+
+
 }
 
-body{
-    font-family:'Inter',sans-serif;
-    background:#0F172A;
-}
 
-        .login-page{
-    min-height:100vh;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:80px;
-    background:linear-gradient(135deg,#0F172A,#1E3A8A,#2563EB);
-    overflow:hidden;
-    position:relative;
-}
+
+
 
 .login-page::before{
-    content:"";
-    position:absolute;
-    width:450px;
-    height:450px;
-    background:rgba(255,255,255,.08);
-    border-radius:50%;
-    top:-120px;
-    left:-120px;
-    filter:blur(20px);
+
+
+content:"";
+
+
+position:absolute;
+
+
+width:450px;
+
+
+height:450px;
+
+
+background:
+rgba(59,130,246,.15);
+
+
+border-radius:50%;
+
+
+top:-120px;
+
+
+left:-120px;
+
+
+filter:blur(30px);
+
+
 }
+
+
+
 
 .login-page::after{
-    content:"";
-    position:absolute;
-    width:350px;
-    height:350px;
-    background:rgba(255,255,255,.05);
-    border-radius:50%;
-    bottom:-100px;
-    right:-100px;
-    filter:blur(15px);
+
+
+content:"";
+
+
+position:absolute;
+
+
+width:350px;
+
+
+height:350px;
+
+
+background:
+rgba(14,165,233,.12);
+
+
+border-radius:50%;
+
+
+bottom:-100px;
+
+
+right:-100px;
+
+
+filter:blur(30px);
+
+
 }
+
+
+
+
+
+
+
+/* LEFT */
+
+
 
 .left-panel{
-    width:48%;
-    color:white;
-    z-index:2;
+
+
+width:48%;
+
+
+color:white;
+
+
+z-index:2;
+
+
 }
+
+
+
 
 .logo{
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    background:white;
-    color:#2563EB;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:45px;
-    margin-bottom:30px;
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+
+width:90px;
+
+
+height:90px;
+
+
+border-radius:24px;
+
+
+background:
+
+var(--gradient-primary);
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+font-size:45px;
+
+
+margin-bottom:30px;
+
+
+box-shadow:
+
+var(--shadow-blue);
+
+
 }
+
+
 
 .left-panel h1{
-    font-size:56px;
-    font-weight:800;
+
+
+font-size:60px;
+
+
+font-weight:900;
+
+
+letter-spacing:2px;
+
+
 }
+
+
+
 
 .left-panel h3{
-    margin-top:12px;
-    font-weight:500;
-    color:#BFDBFE;
+
+
+margin-top:10px;
+
+
+color:#BFDBFE;
+
+
+font-weight:500;
+
+
 }
+
+
 
 .left-panel p{
-    margin-top:25px;
-    line-height:1.8;
-    max-width:520px;
-    color:#E2E8F0;
+
+
+margin-top:25px;
+
+
+max-width:520px;
+
+
+line-height:1.8;
+
+
+color:#E2E8F0;
+
+
 }
+
+
+
+
+
 
 .features{
-    margin-top:40px;
+
+
+margin-top:35px;
+
+
 }
+
+
 
 .features div{
-    margin-bottom:18px;
-    padding:15px 20px;
-    border-radius:12px;
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(10px);
-    font-weight:500;
-    transition:.3s;
+
+
+margin-bottom:15px;
+
+
+padding:14px 18px;
+
+
+border-radius:14px;
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+backdrop-filter:blur(10px);
+
+
+transition:.3s;
+
+
 }
+
+
 
 .features div:hover{
-    transform:translateX(10px);
-    background:rgba(255,255,255,.15);
+
+
+transform:translateX(8px);
+
+
+background:
+
+rgba(255,255,255,.15);
+
+
 }
+
+
+
+
+
+
+/* RIGHT */
+
+
 
 .right-panel{
-    width:42%;
-    display:flex;
-    justify-content:center;
-    z-index:2;
+
+
+width:42%;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+z-index:2;
+
+
 }
+
+
+
+
 
 .login-card{
-    width:100%;
-    max-width:460px;
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(18px);
-    padding:45px;
-    border-radius:25px;
-    border:1px solid rgba(255,255,255,.2);
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+
+width:100%;
+
+
+max-width:460px;
+
+
+padding:45px;
+
+
+background:
+
+rgba(16,29,43,.75);
+
+
+backdrop-filter:blur(20px);
+
+
+border:
+
+1px solid rgba(255,255,255,.1);
+
+
+border-radius:26px;
+
+
+box-shadow:
+
+var(--shadow-card);
+
+
 }
+
+
+
+
 
 .login-card h2{
-    color:white;
-    font-size:34px;
-    text-align:center;
+
+
+text-align:center;
+
+
+font-size:34px;
+
+
+color:white;
+
+
 }
+
+
+
 
 .login-card p{
-    color:#E2E8F0;
-    text-align:center;
-    margin:15px 0 35px;
+
+
+text-align:center;
+
+
+margin:15px 0 35px;
+
+
+color:
+
+var(--text-secondary);
+
+
 }
+
+
+
+
+
+
 
 .input-box{
-    display:flex;
-    align-items:center;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.2);
-    border-radius:14px;
-    padding:15px;
-    margin-bottom:22px;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:12px;
+
+
+padding:15px;
+
+
+margin-bottom:20px;
+
+
+border-radius:14px;
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+border:
+
+1px solid rgba(255,255,255,.12);
+
+
 }
+
+
 
 .input-box svg{
-    color:white;
-    font-size:18px;
+
+
+color:white;
+
+
 }
+
+
 
 .input-box input{
-    flex:1;
-    margin-left:12px;
-    border:none;
-    outline:none;
-    background:transparent;
-    color:white;
-    font-size:16px;
+
+
+flex:1;
+
+
+border:none;
+
+
+outline:none;
+
+
+background:none;
+
+
+color:white;
+
+
 }
+
+
 
 .input-box input::placeholder{
-    color:#CBD5E1;
+
+
+color:#CBD5E1;
+
+
 }
+
+
 
 .eye{
-    cursor:pointer;
-    color:white;
+
+
+cursor:pointer;
+
+
+color:white;
+
+
 }
+
+
+
+
+
 
 .options{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    color:white;
-    font-size:14px;
-    margin-bottom:25px;
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+color:white;
+
+
+font-size:14px;
+
+
+margin-bottom:25px;
+
+
 }
+
+
+
+
 
 .options label{
-    display:flex;
-    align-items:center;
-    gap:8px;
+
+
+display:flex;
+
+
+gap:8px;
+
+
+align-items:center;
+
+
 }
 
-.options span{
-    cursor:pointer;
-}
 
-.options span:hover{
-    color:#BFDBFE;
-}
+
 
 .login-card button{
-    width:100%;
-    border:none;
-    padding:16px;
-    border-radius:14px;
-    background:white;
-    color:#2563EB;
-    font-size:17px;
-    font-weight:700;
-    transition:.3s;
+
+
+width:100%;
+
+
+padding:16px;
+
+
+border:none;
+
+
+border-radius:14px;
+
+
+background:
+
+var(--gradient-primary);
+
+
+color:white;
+
+
+font-weight:700;
+
+
+font-size:17px;
+
+
+transition:.3s;
+
+
 }
+
+
 
 .login-card button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(255,255,255,.3);
+
+
+transform:translateY(-3px);
+
+
+box-shadow:
+
+var(--shadow-blue);
+
+
 }
 
-.security-status{
-    margin-top:35px;
-    padding-top:20px;
-    border-top:1px solid rgba(255,255,255,.2);
+
+
+.login-card button:disabled{
+
+
+opacity:.6;
+
+
+cursor:not-allowed;
+
+
+transform:none;
+
+
 }
 
-.security-status div{
-    color:white;
-    margin-bottom:10px;
-    font-size:15px;
+
+
+
+
+
+.login-error{
+
+
+color:#F87171;
+
+
+text-align:center;
+
+
+font-weight:600;
+
+
+margin-bottom:15px;
+
+
 }
+
+
+
+
+
+.login-security-status{
+
+
+margin-top:35px;
+
+
+padding-top:20px;
+
+
+border-top:
+
+1px solid rgba(255,255,255,.15);
+
+
+}
+
+
+
+.login-security-status div{
+
+
+color:white;
+
+
+margin-bottom:10px;
+
+
+font-size:14px;
+
+
+}
+
+
+
+
+
 
 @media(max-width:1100px){
 
+
 .login-page{
-    flex-direction:column;
-    padding:40px;
+
+
+flex-direction:column;
+
+
+padding:40px;
+
+
 }
+
+
+
+.left-panel,
+.right-panel{
+
+
+width:100%;
+
+
+}
+
+
 
 .left-panel{
-    width:100%;
-    text-align:center;
-    margin-bottom:50px;
-}
 
-.left-panel p{
-    margin:auto;
-    margin-top:25px;
-}
 
-.right-panel{
-    width:100%;
-}
+text-align:center;
 
-.login-card{
-    max-width:520px;
-}
+
+margin-bottom:40px;
+
 
 }
+
+
+}
+
+
+
 
 @media(max-width:700px){
 
+
 .login-page{
-    padding:20px;
+
+
+padding:20px;
+
+
 }
+
 
 .left-panel h1{
-    font-size:38px;
+
+
+font-size:40px;
+
+
 }
 
-.left-panel h3{
-    font-size:22px;
-}
+
 
 .login-card{
-    padding:30px;
+
+
+padding:30px;
+
+
 }
 
-.login-card h2{
-    font-size:28px;
-}
-
-.features div{
-    font-size:14px;
-}
 
 }

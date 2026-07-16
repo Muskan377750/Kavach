@@ -37,107 +37,163 @@ function AlertModal({ alert, onClose, fetchAlerts }) {
         </div>
 
         <div className="modal-body">
-          <div className="modal-row">
-            <strong>Employee</strong>
-            <span>{alert.user?.name || "Unknown"}</span>
-          </div>
 
-          <div className="modal-row">
-            <strong>Email</strong>
-            <span>{alert.user?.email || "N/A"}</span>
-          </div>
+    {/* Employee */}
 
-          <div className="modal-row">
-            <strong>Department</strong>
-            <span>{alert.user?.department || "N/A"}</span>
-          </div>
+    <div className="modal-section">
 
-          <div className="modal-row">
-            <strong>Role</strong>
-            <span>{alert.user?.role || "N/A"}</span>
-          </div>
+        <h3>👤 Employee Information</h3>
 
-          <div className="modal-row">
-            <strong>Alert Type</strong>
-            <span>{alert.alertType}</span>
-          </div>
+        <div className="modal-grid">
 
-          <div className="modal-row">
-            <strong>Description</strong>
-            <span>{alert.message}</span>
-          </div>
-
-          <div className="modal-row">
-            <strong>Risk Level</strong>
-
-            <span
-              className={`risk ${(alert.riskLevel || "Low").toLowerCase()}`}
-            >
-              {alert.riskLevel || "Low"}
-            </span>
-          </div>
-
-          <div className="modal-row">
-            <strong>Status</strong>
-
-            <span>{alert.status || "Open"}</span>
-          </div>
-
-          <div className="modal-row">
-            <strong>IP Address</strong>
-
-            <span>{alert.ipAddress || "127.0.0.1"}</span>
-          </div>
-
-          <div className="modal-row">
-            <strong>Location</strong>
-
-            <span>{alert.location || "Head Office"}</span>
-          </div>
-
-          <div className="modal-row">
-            <strong>Browser</strong>
-
-            <span>{alert.browser || "Chrome"}</span>
-          </div>
-
-          <div className="modal-row">
-            <strong>Device</strong>
-
-            <span>{alert.device || "Windows Laptop"}</span>
-          </div>
-
-          <div className="modal-row">
-            <strong>Risk Score</strong>
-
-            <div className="risk-progress">
-              <div
-                className="risk-fill"
-                style={{
-                  width: `${alert.riskScore || 80}%`,
-                }}
-              ></div>
+            <div className="info-card">
+                <span>Name</span>
+                <strong>{alert.user?.name || "Unknown"}</strong>
             </div>
 
-            <span>{alert.riskScore || 80}%</span>
-          </div>
+            <div className="info-card">
+                <span>Email</span>
+                <strong>{alert.user?.email || "N/A"}</strong>
+            </div>
 
-          <div className="modal-row">
-            <strong>Generated At</strong>
+            <div className="info-card">
+                <span>Department</span>
+                <strong>{alert.user?.department || "General"}</strong>
+            </div>
 
-            <span>{new Date(alert.createdAt).toLocaleString()}</span>
-          </div>
+            <div className="info-card">
+                <span>Role</span>
+                <strong>{alert.user?.role || "Employee"}</strong>
+            </div>
 
-          <div className="modal-actions">
-            <button className="investigate-btn" onClick={handleInvestigate}>
-              Investigate
-            </button>
-
-            <button className="resolve-btn" onClick={handleResolve}>
-              Resolve
-            </button>
-          </div>
         </div>
+
+    </div>
+
+    {/* Alert */}
+
+    <div className="modal-section">
+
+        <h3>🚨 Alert Details</h3>
+
+        <div className="modal-grid">
+
+            <div className="info-card">
+                <span>Alert Type</span>
+                <strong>{alert.alertType}</strong>
+            </div>
+
+            <div className="info-card">
+                <span>Status</span>
+                <strong>{alert.status}</strong>
+            </div>
+
+            <div className="info-card">
+                <span>Risk Level</span>
+
+                <div className={`risk ${(alert.riskLevel || "Low").toLowerCase()}`}>
+                    {alert.riskLevel}
+                </div>
+
+            </div>
+
+            <div className="info-card">
+                <span>Generated</span>
+                <strong>
+                    {new Date(alert.createdAt).toLocaleString()}
+                </strong>
+            </div>
+
+        </div>
+
+        <div className="description-box">
+
+            <h4>Description</h4>
+
+            <p>{alert.message}</p>
+
+        </div>
+
+    </div>
+
+    {/* Environment */}
+
+    <div className="modal-section">
+
+        <h3>💻 Device Information</h3>
+
+        <div className="modal-grid">
+
+            <div className="info-card">
+                <span>IP Address</span>
+                <strong>{alert.ipAddress || "127.0.0.1"}</strong>
+            </div>
+
+            <div className="info-card">
+                <span>Location</span>
+                <strong>{alert.location || "Head Office"}</strong>
+            </div>
+
+            <div className="info-card">
+                <span>Browser</span>
+                <strong>{alert.browser || "Chrome"}</strong>
+            </div>
+
+            <div className="info-card">
+                <span>Device</span>
+                <strong>{alert.device || "Windows Laptop"}</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    {/* Risk */}
+
+    <div className="modal-section">
+
+        <h3>📊 Risk Score</h3>
+
+        <div className="risk-progress">
+
+            <div
+                className="risk-fill"
+                style={{
+                    width: `${alert.riskScore || 80}%`
+                }}
+            />
+
+        </div>
+
+        <h2 className="risk-score">
+
+            {alert.riskScore || 80}%
+
+        </h2>
+
+    </div>
+
+    {/* Actions */}
+
+    <div className="modal-actions">
+
+        <button
+            className="investigate-btn"
+            onClick={handleInvestigate}
+        >
+            Investigate
+        </button>
+
+        <button
+            className="resolve-btn"
+            onClick={handleResolve}
+        >
+            Resolve
+        </button>
+
+    </div>
+
+</div>
       </div>
     </div>
   );

@@ -1,86 +1,160 @@
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* ==========================================================
+   KAVACH SOC
+   Global Styles
+========================================================== */
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-    scroll-behavior: smooth;
+    scroll-behavior:smooth;
+    height:100%;
 }
 
 body{
-    font-family: 'Inter',sans-serif;
-    background: #F8FAFC;
-    color: #0F172A;
-    overflow-x: hidden;
+    min-height:100vh;
+    font-family:var(--font-main);
+    background:var(--bg-primary);
+    color:var(--text-primary);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
 }
+
+#root{
+    min-height:100vh;
+}
+
+/* ==========================================================
+   TYPOGRAPHY
+========================================================== */
+
+h1,h2,h3,h4,h5,h6{
+    font-weight:700;
+    color:var(--text-primary);
+}
+
+p{
+    color:var(--text-secondary);
+    line-height:1.6;
+}
+
+/* ==========================================================
+   LINKS
+========================================================== */
 
 a{
-    text-decoration: none;
-    color: inherit;
+    color:inherit;
+    text-decoration:none;
 }
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
 
 button{
-    cursor: pointer;
-    font-family: inherit;
+    font:inherit;
+    border:none;
+    outline:none;
+    background:none;
+    cursor:pointer;
 }
 
-input,button,textarea,select{
-    font: inherit;
+/* ==========================================================
+   INPUTS
+========================================================== */
+
+input,
+textarea,
+select{
+    font:inherit;
+    border:none;
+    outline:none;
+    background:none;
 }
 
-ul{
-    list-style: none;
+/* ==========================================================
+   LISTS
+========================================================== */
+
+ul,
+ol{
+    list-style:none;
 }
+
+/* ==========================================================
+   IMAGES
+========================================================== */
 
 img{
-    max-width: 100%;
-    display: block;
+    max-width:100%;
+    display:block;
 }
 
+/* ==========================================================
+   SVG
+========================================================== */
+
+svg{
+    flex-shrink:0;
+}
+
+/* ==========================================================
+   SELECTION
+========================================================== */
+
+::selection{
+    background:var(--primary-blue);
+    color:#fff;
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
 ::-webkit-scrollbar{
-    width: 8px;
+    width:8px;
+    height:8px;
 }
 
 ::-webkit-scrollbar-track{
-    background:#E2E8F0;
+    background:var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#2563EB;
-    border-radius:20px;
+    background:#334155;
+    border-radius:999px;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background:#1D4ED8;
+    background:var(--primary-blue);
 }
 
-:root{
-     --primary:#2563EB;
-    --primary-dark:#1D4ED8;
+/* ==========================================================
+   UTILITIES
+========================================================== */
 
-    --dark:#0F172A;
-
-    --background:#F8FAFC;
-
-    --white:#FFFFFF;
-
-    --green:#10B981;
-
-    --yellow:#F59E0B;
-
-    --red:#EF4444;
-
-    --gray:#64748B;
-
-    --border:#CBD5E1;
-
-    --shadow:
-    0 20px 45px rgba(15,23,42,.08);
-
-    --radius:18px;
+.text-muted{
+    color:var(--text-muted);
 }
 
+.glass{
+    background:var(--glass-background);
+    backdrop-filter:blur(14px);
+    border:1px solid var(--glass-border);
+}
+
+.shadow-card{
+    box-shadow:var(--shadow-card);
+}

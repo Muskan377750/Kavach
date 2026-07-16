@@ -1,160 +1,292 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+
 import StatCard from "../components/StatCard";
 import SecurityHealth from "../components/SecurityHealth";
-import ThreatTrendChart from "../components/ThreatTrendChart";
-import RiskDistributionChart from "../components/RiskDistributionChart";
 import ThreatFeed from "../components/ThreatFeed";
 import EmployeeRiskMonitor from "../components/EmployeeRiskMonitor";
-import IncidentTimeline from "../components/IncidentTimeline";
+import RecentInvestigations from "../components/RecentInvestigations";
 
-import useDashboard from "../hooks/useDashboard";
-import socket from "../socket";
+import ThreatTrendChart from "../components/ThreatTrendChart";
+import RiskDistributionChart from "../components/RiskDistributionChart";
+
+import LiveClock from "../components/LiveClock";
+
+import { getDashboardData } from "../services/dashboardService";
+
+import { useSearch } from "../context/SearchContext";
+import { useSidebar } from "../context/SidebarContext";
 
 import "../styles/dashboard.css";
+import "../styles/statcard.css";
 
 function Dashboard() {
-  const {
-    dashboard,
-    loading,
-    error,
-    fetchDashboard,
-  } = useDashboard();
+  const { collapsed } = useSidebar();
+  const { search } = useSearch();
 
-  // ===========================
-  // Real-Time Dashboard Updates
-  // ===========================
+  const [loading, setLoading] = useState(true);
+
+  const [dashboardData, setDashboardData] = useState({
+    activeEmployees: 0,
+    openAlerts: 0,
+    auditLogs: 0,
+    highRiskUsers: 0,
+
+    recentAlerts: [],
+    topRiskEmployees: [],
+    recentInvestigations: [],
+  });
 
   useEffect(() => {
-    socket.on("new-alert", () => {
-      console.log("📊 Dashboard Updated");
-      fetchDashboard();
-    });
+    const loadData = async () => {
+      try {
+        const data = await getDashboardData();
 
-    return () => {
-      socket.off("new-alert");
+        setDashboardData({
+          activeEmployees: data.activeEmployees || 0,
+          openAlerts: data.openAlerts || 0,
+          auditLogs: data.auditLogs || 0,
+          highRiskUsers: data.highRiskUsers || 0,
+
+          recentAlerts:
+            data.recentAlerts || data.alerts || [],
+
+          topRiskEmployees:
+            data.topRiskEmployees || [],
+
+          recentInvestigations:
+            data.recentInvestigations || [],
+        });
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
     };
-  }, [fetchDashboard]);
 
-  // ===========================
-  // Loading
-  // ===========================
+    loadData();
+  }, []);
 
-  if (loading) {
-    return (
-      <div className="dashboard">
-        <Sidebar />
+  const filteredAlerts = dashboardData.recentAlerts.filter(
+    (alert) =>
+      (alert.title || "")
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      (alert.description || "")
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      (alert.severity || "")
+        .toLowerCase()
+        .includes(search.toLowerCase())
+  );
 
-        <div className="dashboard-content">
-          <Navbar />
-
-          <div className="users-loading">
-            <div className="loader"></div>
-
-            <h2>Loading Dashboard...</h2>
-          </div>
-        </div>
-      </div>
+  const filteredEmployees =
+    dashboardData.topRiskEmployees.filter(
+      (employee) =>
+        (employee.name || "")
+          .toLowerCase()
+          .includes(search.toLowerCase()) ||
+        (employee.department || "")
+          .toLowerCase()
+          .includes(search.toLowerCase()) ||
+        (employee.risk || "")
+          .toLowerCase()
+          .includes(search.toLowerCase())
     );
-  }
 
-  // ===========================
-  // Error
-  // ===========================
-
-  if (error) {
-    return (
-      <div className="dashboard">
-        <Sidebar />
-
-        <div className="dashboard-content">
-          <Navbar />
-
-          <div className="users-error">
-            <h2>{error}</h2>
-          </div>
-        </div>
-      </div>
+  const filteredInvestigations =
+    dashboardData.recentInvestigations.filter(
+      (item) =>
+        (item.title || "")
+          .toLowerCase()
+          .includes(search.toLowerCase()) ||
+        (item.status || "")
+          .toLowerCase()
+          .includes(search.toLowerCase())
     );
-  }
-
-  // ===========================
-  // Dashboard
-  // ===========================
 
   return (
-    <div className="dashboard">
+    <div className="dashboard-layout">
       <Sidebar />
 
-      <div className="dashboard-content">
-        <Navbar />
+      <main
+        className={`dashboard-main ${
+          collapsed ? "collapsed" : ""
+        }`}
+      >
+        <div className="dashboard-content">
 
-        {/* ===========================
-            Statistics
-        =========================== */}
+          {/* Floating Navbar */}
+          <Navbar />
 
-        <div className="cards">
-          <StatCard
-            title="Active Employees"
-            value={dashboard.activeEmployees}
-            color="#2563EB"
-          />
+          {/* Dashboard Header */}
 
-          <StatCard
-            title="Open Alerts"
-            value={dashboard.openAlerts}
-            color="#EF4444"
-          />
+          <section className="dashboard-header">
 
-          <StatCard
-            title="Audit Logs"
-            value={dashboard.auditLogs}
-            color="#10B981"
-          />
+            <div>
 
-          <StatCard
-            title="High Risk Users"
-            value={dashboard.highRiskUsers}
-            color="#F59E0B"
-          />
+              <span className="dashboard-badge">
+                KAVACH • Banking Security Operations Center
+              </span>
+
+              <h1>Security Command Center</h1>
+
+              <p>
+                Monitor privileged users,
+                insider threats,
+                suspicious banking activities,
+                audit events and security posture
+                from one centralized dashboard.
+              </p>
+
+            </div>
+
+            <div className="dashboard-actions">
+              <LiveClock />
+            </div>
+
+          </section>
+
+          {/* KPI Cards */}
+
+          <section className="stats-grid">
+
+            <StatCard
+              title="Active Employees"
+              value={
+                loading
+                  ? "..."
+                  : dashboardData.activeEmployees
+              }
+              type="users"
+              trend="Online Monitoring"
+            />
+
+            <StatCard
+              title="Open Alerts"
+              value={
+                loading
+                  ? "..."
+                  : dashboardData.openAlerts
+              }
+              type="alerts"
+              trend="Critical Review"
+            />
+
+            <StatCard
+              title="Audit Events"
+              value={
+                loading
+                  ? "..."
+                  : dashboardData.auditLogs
+              }
+              type="activity"
+              trend="Today's Activity"
+            />
+
+            <StatCard
+              title="High Risk Users"
+              value={
+                loading
+                  ? "..."
+                  : dashboardData.highRiskUsers
+              }
+              type="risk"
+              trend="Immediate Action"
+            />
+
+          </section>
+
+          {/* Threat Analytics */}
+
+          <section className="dashboard-section">
+
+            <h2 className="section-title">
+              Threat Analytics
+            </h2>
+
+            <div className="charts-grid">
+
+              <div className="dashboard-panel">
+                <ThreatTrendChart />
+              </div>
+
+              <div className="dashboard-panel">
+                <RiskDistributionChart />
+              </div>
+
+            </div>
+
+          </section>
+
+          {/* Security Health */}
+
+          <section className="dashboard-section">
+
+            <h2 className="section-title">
+              Security Health
+            </h2>
+
+            <div className="dashboard-panel">
+              <SecurityHealth />
+            </div>
+
+          </section>
+
+          {/* Threat Feed */}
+
+          <section className="dashboard-section">
+
+            <h2 className="section-title">
+              Threat Intelligence
+            </h2>
+
+            <div className="dashboard-two-column">
+
+              <div className="dashboard-panel">
+
+                <ThreatFeed
+                  alerts={filteredAlerts}
+                />
+
+              </div>
+
+              <div className="dashboard-panel">
+
+                <EmployeeRiskMonitor
+                  employees={filteredEmployees}
+                />
+
+              </div>
+
+            </div>
+
+          </section>
+
+          {/* Investigations */}
+
+          <section className="dashboard-section">
+
+            <h2 className="section-title">
+              Recent Investigations
+            </h2>
+
+            <div className="dashboard-panel">
+
+              <RecentInvestigations
+                investigations={
+                  filteredInvestigations
+                }
+              />
+
+            </div>
+
+          </section>
+
         </div>
-
-        {/* ===========================
-            Security Health + Trend
-        =========================== */}
-
-        <div className="dashboard-grid">
-          <SecurityHealth />
-
-          <ThreatTrendChart />
-        </div>
-
-        {/* ===========================
-            Threat Feed + Risk Chart
-        =========================== */}
-
-        <div className="dashboard-grid">
-          <ThreatFeed />
-
-          <RiskDistributionChart />
-        </div>
-
-        {/* ===========================
-            Enterprise Monitoring
-        =========================== */}
-
-        <div className="dashboard-grid">
-          <EmployeeRiskMonitor
-            employees={dashboard.topRiskEmployees || []}
-          />
-
-          <IncidentTimeline
-            investigations={dashboard.recentInvestigations || []}
-          />
-        </div>
-      </div>
+      </main>
     </div>
   );
 }

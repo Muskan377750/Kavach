@@ -2,26 +2,48 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import AuditTable from "../components/AuditTable";
 
-function AuditLogs() {
+import "../styles/auditlogs.css";
 
-  return (
 
-    <div className="dashboard">
+function AuditLogs(){
 
-      <Sidebar />
+return(
 
-      <div className="dashboard-content">
+<div className="dashboard-layout">
 
-        <Navbar />
 
-        <AuditTable />
+<Sidebar/>
 
-      </div>
 
-    </div>
+<div className="dashboard-main">
 
-  );
+
+<Navbar/>
+
+
+<div className="dashboard-content">
+
+
+<div className="audit-page">
+
+
+<AuditTable/>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+);
 
 }
+
 
 export default AuditLogs;

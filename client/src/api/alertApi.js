@@ -1,27 +1,40 @@
-import axios from "axios";
+import api from "./api";
 
-const API = "http://localhost:5000/api/alerts";
 
-const getToken = () => localStorage.getItem("token");
+// GET ALL ALERTS
 
-export const investigateAlert = (id) =>
-  axios.put(
-    `${API}/${id}/investigate`,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
-      },
-    }
-  );
+export const getAlerts = async () => {
 
-export const resolveAlert = (id) =>
-  axios.put(
-    `${API}/${id}/resolve`,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
-      },
-    }
-  );
+    const response = await api.get("/alerts");
+
+    return response.data;
+
+};
+
+
+
+// INVESTIGATE ALERT
+
+export const investigateAlert = async(id)=>{
+
+    const response = await api.put(
+        `/alerts/${id}/investigate`
+    );
+
+    return response.data;
+
+};
+
+
+
+// RESOLVE ALERT
+
+export const resolveAlert = async(id)=>{
+
+    const response = await api.put(
+        `/alerts/${id}/resolve`
+    );
+
+    return response.data;
+
+};

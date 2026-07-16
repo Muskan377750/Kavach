@@ -1,695 +1,383 @@
-/* =====================================================
-   EMPLOYEE MANAGEMENT
-===================================================== */
+/* ======================================================
+   KAVACH USERS PAGE
+====================================================== */
 
-.users-page {
-  margin-top: 25px;
+.users-page{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
 }
 
-.users-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+/* ================= HEADER ================= */
+
+.users-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:25px;
+  flex-wrap:wrap;
 }
 
-.users-header h1 {
-  font-size: 32px;
-  color: #0f172a;
-  margin-bottom: 8px;
+.users-header h1{
+  margin:10px 0 8px;
+  font-size:2rem;
+  color:var(--text-primary);
+  font-weight:800;
 }
 
-.users-header p {
-  color: #64748b;
-  font-size: 15px;
+.users-header p{
+  max-width:650px;
+  color:var(--text-secondary);
+  line-height:1.6;
 }
 
-.users-toolbar {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 25px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+.users-toolbar{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap;
 }
 
-.employee-count {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* ================= SEARCH ================= */
 
-  font-weight: 600;
-  color: #334155;
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:var(--bg-card);
+  border:1px solid var(--border-primary);
+  border-radius:16px;
+  padding:0 16px;
+  height:52px;
+  min-width:320px;
 }
 
-.employee-count span {
-  background: #2563eb;
-  color: white;
-  padding: 6px 14px;
-  border-radius: 30px;
-  font-size: 14px;
+.search-box svg{
+  color:var(--primary-blue);
+  font-size:18px;
 }
 
-/* =====================================================
-   SEARCH BAR
-===================================================== */
-
-.search-box {
-  width: 420px;
-  position: relative;
+.search-box input{
+  flex:1;
+  background:none;
+  border:none;
+  outline:none;
+  color:var(--text-primary);
+  font-size:15px;
 }
 
-.search-box input {
-  width: 100%;
-  padding: 14px 20px 14px 52px;
-
-  border: 1px solid #dbe3ef;
-
-  border-radius: 14px;
-
-  outline: none;
-
-  font-size: 15px;
-
-  transition: 0.3s;
+.users-toolbar select{
+  height:52px;
+  border-radius:16px;
+  border:1px solid var(--border-primary);
+  background:var(--bg-card);
+  color:var(--text-primary);
+  padding:0 18px;
+  cursor:pointer;
 }
 
-.search-box input:focus {
-  border-color: #2563eb;
+/* ================= KPI CARDS ================= */
 
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, .12);
+.users-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
 }
 
-.search-icon {
-  position: absolute;
-
-  left: 18px;
-
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  font-size: 18px;
-
-  color: #64748b;
+.user-stat-card{
+  background:var(--bg-card);
+  border:1px solid var(--border-primary);
+  border-radius:22px;
+  padding:24px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  transition:.3s;
+  box-shadow:var(--shadow-card);
 }
 
-/* =====================================================
-   TABLE
-===================================================== */
-
-.table-container {
-
-  background: white;
-
-  border-radius: 18px;
-
-  overflow: hidden;
-
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-
+.user-stat-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--primary-blue);
 }
 
-.users-table {
+.stat-icon{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+}
 
+.stat-icon.blue{
+  background:rgba(59,130,246,.12);
+  color:#3b82f6;
+}
+
+.stat-icon.red{
+  background:rgba(239,68,68,.12);
+  color:#ef4444;
+}
+
+.stat-icon.orange{
+  background:rgba(249,115,22,.12);
+  color:#f97316;
+}
+
+.stat-icon.green{
+  background:rgba(34,197,94,.12);
+  color:#22c55e;
+}
+
+.user-stat-card h2{
+  margin:0;
+  color:var(--text-primary);
+  font-size:1.8rem;
+}
+
+.user-stat-card p{
+  margin-top:6px;
+  color:var(--text-secondary);
+}
+
+/* ================= TABLE ================= */
+
+.users-table-card{
+  background:var(--bg-card);
+  border-radius:24px;
+  border:1px solid var(--border-primary);
+  overflow:auto;
+  box-shadow:var(--shadow-card);
+}
+
+.users-table{
   width:100%;
-
+  min-width:1100px;
   border-collapse:collapse;
-
 }
 
 .users-table thead{
-
-background:#1E3A8A;
-
+  background:rgba(59,130,246,.08);
 }
 
 .users-table th{
-
-padding:18px;
-
-text-align:left;
-
-color:white;
-
-font-size:15px;
-
-font-weight:600;
-
-letter-spacing:.5px;
-
+  padding:18px;
+  color:var(--text-secondary);
+  text-transform:uppercase;
+  font-size:.82rem;
+  letter-spacing:.05em;
+  text-align:left;
 }
 
 .users-table td{
-
-padding:18px;
-
-border-bottom:1px solid #edf2f7;
-
-vertical-align:middle;
-
+  padding:20px 18px;
+  border-top:1px solid rgba(255,255,255,.05);
+  color:var(--text-primary);
 }
 
 .users-table tbody tr{
-
-transition:.3s;
-
+  transition:.25s;
 }
 
 .users-table tbody tr:hover{
-
-background:#F8FAFC;
-
-transform:scale(1.01);
-
+  background:rgba(59,130,246,.05);
 }
-
-.no-users{
-
-text-align:center;
-
-padding:40px;
-
-font-size:17px;
-
-color:#64748b;
-
-}
-
-/* =====================================================
-   EMPLOYEE CELL
-===================================================== */
+/* ================= EMPLOYEE ================= */
 
 .employee-cell{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-}
-
-.employee-cell h4{
-
-margin:0;
-
-font-size:16px;
-
-color:#0f172a;
-
-}
-
-.employee-cell p{
-
-margin-top:4px;
-
-font-size:13px;
-
-color:#64748b;
-
+  display:flex;
+  align-items:center;
+  gap:16px;
 }
 
 .employee-avatar{
-
-width:48px;
-
-height:48px;
-
-border-radius:50%;
-
-background:linear-gradient(135deg,#2563eb,#1d4ed8);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-color:white;
-
-font-weight:bold;
-
-font-size:18px;
-
-box-shadow:0 8px 18px rgba(37,99,235,.3);
-
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  font-weight:700;
+  color:#fff;
+  background:linear-gradient(135deg,#3b82f6,#2563eb);
+  box-shadow:0 8px 20px rgba(59,130,246,.25);
+  flex-shrink:0;
 }
 
-/* =====================================================
-   RISK
-===================================================== */
-
-.risk-column{
-
-display:flex;
-
-flex-direction:column;
-
-gap:10px;
-
+.employee-info h4{
+  margin:0;
+  color:var(--text-primary);
+  font-size:15px;
+  font-weight:700;
 }
 
-.risk-progress{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
+.employee-info span{
+  display:block;
+  margin-top:4px;
+  color:var(--text-secondary);
+  font-size:13px;
 }
 
-.risk-bar{
+/* ================= DEPARTMENT ================= */
 
-width:130px;
-
-height:10px;
-
-background:#e5e7eb;
-
-border-radius:30px;
-
-overflow:hidden;
-
-}
-
-.risk-fill{
-
-height:100%;
-
-border-radius:30px;
-
-transition:.4s;
-
-}
-
-.risk-progress span{
-
-font-size:13px;
-
-font-weight:600;
-
-color:#334155;
-
-}
-
-.risk-badge{
-
-display:inline-flex;
-
-justify-content:center;
-
-align-items:center;
-
-padding:6px 14px;
-
-border-radius:30px;
-
-font-size:12px;
-
-font-weight:700;
-
-width:90px;
-
-}
-
-/* =====================================================
-   RISK BADGES
-===================================================== */
-
-.risk-badge.low{
-  background:#DCFCE7;
-  color:#16A34A;
-}
-
-.risk-badge.medium{
-  background:#FEF3C7;
-  color:#CA8A04;
-}
-
-.risk-badge.high{
-  background:#FED7AA;
-  color:#EA580C;
-}
-
-.risk-badge.critical{
-  background:#FEE2E2;
-  color:#DC2626;
-}
-
-/* =====================================================
-   STATUS
-===================================================== */
-
-.status{
+.department-chip{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:6px 14px;
-  border-radius:30px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(59,130,246,.12);
+  color:#60a5fa;
   font-size:13px;
   font-weight:600;
 }
 
-.status.online{
-  background:#DCFCE7;
-  color:#16A34A;
+/* ================= ROLE ================= */
+
+.role-chip{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+  text-transform:capitalize;
 }
 
-.status.offline{
-  background:#FEE2E2;
-  color:#DC2626;
+.role-chip.admin{
+  background:rgba(239,68,68,.12);
+  color:#ef4444;
 }
 
-/* =====================================================
-   BUTTON
-===================================================== */
+.role-chip.manager{
+  background:rgba(249,115,22,.12);
+  color:#f97316;
+}
+
+.role-chip.employee{
+  background:rgba(34,197,94,.12);
+  color:#22c55e;
+}
+
+.role-chip.analyst{
+  background:rgba(168,85,247,.12);
+  color:#a855f7;
+}
+
+/* ================= RISK ================= */
+
+.risk-progress{
+  margin-top:10px;
+  width:120px;
+  height:8px;
+  background:rgba(255,255,255,.08);
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.risk-progress-fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(
+      90deg,
+      #ef4444,
+      #f97316,
+      #facc15,
+      #22c55e
+  );
+}
+
+.risk-percent{
+  display:block;
+  margin-top:8px;
+  color:var(--text-secondary);
+  font-size:12px;
+  font-weight:700;
+}
+
+/* ================= BUTTON ================= */
 
 .view-btn{
-
-  background:#2563EB;
-
-  color:white;
-
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
   border:none;
-
-  padding:10px 18px;
-
-  border-radius:10px;
-
-  cursor:pointer;
-
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+  color:#fff;
+  padding:10px 16px;
+  border-radius:12px;
   font-weight:600;
-
+  cursor:pointer;
   transition:.3s;
-
 }
 
 .view-btn:hover{
-
-  background:#1D4ED8;
-
   transform:translateY(-2px);
-
-  box-shadow:0 10px 20px rgba(37,99,235,.25);
-
+  box-shadow:0 10px 24px rgba(37,99,235,.35);
 }
 
-/* =====================================================
-   LOADING
-===================================================== */
-
-.users-loading{
-
-  height:70vh;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  align-items:center;
-
+.view-btn svg{
+  font-size:15px;
 }
 
-.loader{
+/* ================= STATES ================= */
 
-  width:60px;
-
-  height:60px;
-
-  border:6px solid #E5E7EB;
-
-  border-top:6px solid #2563EB;
-
-  border-radius:50%;
-
-  animation:spin 1s linear infinite;
-
-  margin-bottom:20px;
-
+.loading-box,
+.error-box{
+  background:var(--bg-card);
+  border:1px solid var(--border-primary);
+  border-radius:22px;
+  padding:70px;
+  text-align:center;
+  color:var(--text-primary);
+  font-size:18px;
+  font-weight:700;
 }
 
-@keyframes spin{
-
-  from{
-    transform:rotate(0deg);
-  }
-
-  to{
-    transform:rotate(360deg);
-  }
-
+.error-box{
+  color:#ef4444;
 }
 
-.users-error{
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  height:60vh;
-
-  color:#DC2626;
-
-  font-size:20px;
-
-  font-weight:bold;
-
-}
-
-/* =====================================================
-   SCROLLBAR
-===================================================== */
-
-.table-container{
-
-  overflow-x:auto;
-
-}
-
-.table-container::-webkit-scrollbar{
-
-  height:8px;
-
-}
-
-.table-container::-webkit-scrollbar-thumb{
-
-  background:#CBD5E1;
-
-  border-radius:20px;
-
-}
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:1200px){
 
-.users-toolbar{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:18px;
-
-}
-
-.search-box{
-
-width:100%;
-
-}
-
-}
-
-@media(max-width:992px){
-
-.users-header{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:15px;
-
-}
-
-.users-table th,
-
-.users-table td{
-
-padding:14px;
-
-font-size:14px;
-
-}
-
-.employee-avatar{
-
-width:42px;
-
-height:42px;
-
-font-size:16px;
-
-}
-
-.risk-bar{
-
-width:90px;
-
-}
+  .users-stats{
+    grid-template-columns:repeat(2,1fr);
+  }
 
 }
 
 @media(max-width:768px){
 
-.users-page{
+  .users-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 
-padding:15px;
+  .users-toolbar{
+    width:100%;
+  }
 
-}
+  .search-box{
+    width:100%;
+    min-width:unset;
+  }
 
-.users-header h1{
+  .users-toolbar select{
+    width:100%;
+  }
 
-font-size:26px;
+  .users-stats{
+    grid-template-columns:1fr;
+  }
 
-}
+  .users-table{
+    min-width:900px;
+  }
 
-.users-toolbar{
-
-padding:18px;
-
-}
-
-.users-table{
-
-min-width:900px;
-
-}
-
-.employee-count{
-
-font-size:14px;
-
-}
-
-.employee-count span{
-
-padding:5px 12px;
-
-}
-
-.view-btn{
-
-padding:8px 14px;
-
-font-size:13px;
-
-}
-
-}
-
-@media(max-width:480px){
-
-.users-header h1{
-
-font-size:22px;
-
-}
-
-.search-box input{
-
-font-size:14px;
-
-padding:12px 15px 12px 45px;
-
-}
-
-.search-icon{
-
-left:15px;
-
-}
-
-}
-
-/* =====================================================
-   ANIMATIONS
-===================================================== */
-
-.users-header,
-
-.users-toolbar,
-
-.table-container{
-
-animation:fadeUp .5s ease;
-
-}
-
-@keyframes fadeUp{
-
-from{
-
-opacity:0;
-
-transform:translateY(25px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-/* ===== Risk Badge ===== */
-
-.risk-low{
-    background:#dcfce7;
-    color:#15803d;
-    padding:6px 14px;
-    border-radius:20px;
-    font-weight:600;
-}
-
-.risk-medium{
-    background:#dbeafe;
-    color:#2563eb;
-    padding:6px 14px;
-    border-radius:20px;
-    font-weight:600;
-}
-
-.risk-high{
-    background:#fed7aa;
-    color:#ea580c;
-    padding:6px 14px;
-    border-radius:20px;
-    font-weight:600;
-}
-
-.risk-critical{
-    background:#fee2e2;
-    color:#dc2626;
-    padding:6px 14px;
-    border-radius:20px;
-    font-weight:600;
 }
